@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', 'sans-serif';
+}
+
+.body {
+    overflow-x: hidden;
+}
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-image: url('bannerWeb.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.h1_B {
+    font-family: 'Open Sans';
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h1_R {
+    font-family: 'Open Sans';
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.h2_B {
+    font-family: 'Open Sans';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h2_R {
+    font-family: 'Open Sans';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.h3_B {
+    font-family: 'Open Sans';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h3_R {
+    font-family: 'Open Sans';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.h4_B {
+    font-family: 'Open Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h4_R {
+    font-family: 'Open Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.h5_B {
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h5_R {
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 140%;
+}
+
+.h6_B {
+    font-family: 'Open Sans';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.h6_R {
+    font-family: 'Open Sans';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.button {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.field {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.bodytext {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.tiny {
+    font-family: 'Open Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.homepage_Banner_Tagline{
+        font-family: 'Open Sans';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+    
+}
+
+.homepage_Banner_Name{
+    font-family: 'Lora';
+    font-size: 186px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+
+}
+
+@media(max-width:1023px) {
+    .background {
+        background-image: url('bannerTab.jpg') !important;
+        height: 100vh;
+    }
+
+    .homepage_Banner_Tagline{
+        font-family: 'Open Sans';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+    }
+    .homepage_Banner_Name{
+        font-family: 'Lora';
+        font-size: 135px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    
+    }
+}
+
+@media screen and (max-width:767px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .background {
+        background-image: url('bannerMobile.jpg') !important;
+        height: 100vh;
+    }
+
+    .homepage_Banner_Tagline{
+        font-family: 'Open Sans';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+    }
+    .homepage_Banner_Name{
+        font-family: 'Lora';
+        font-size: 49px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    
+    }
+}
