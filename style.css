@@ -183,7 +183,7 @@
 .blog {
   max-width: '';
   padding: 12px 24px;
-  border: 1px solid #ffffff;
+  background-color: #EF233C;
   text-decoration: none;
     color: #ffffff;
 }
@@ -191,10 +191,26 @@
 .blog:hover{
   max-width: '';
   padding: 12px 24px;
-  background-color: #EF233C;
-  border: 1px solid #EF233C;
+  background-color: #a50f21;
   text-decoration: none;
     color: #ffffff;
+}
+
+.portfolio {
+  max-width: '';
+  padding: 12px;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+    color: #ffffff;
+}
+
+.portfolio:hover {
+  max-width: '';
+  padding: 12px;
+  border: 1px solid #1769ff;
+  text-decoration: none;
+    color: #ffffff;
+    background-color: #1769ff;
 }
 
 @keyframes l7 {
