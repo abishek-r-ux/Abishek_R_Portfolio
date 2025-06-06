@@ -165,6 +165,45 @@
 
 }
 
+/* HTML: <div class="loader"></div> */
+
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: 'Lora';
+  font-size: 14px;
+  color: #ffffff;
+  background: linear-gradient(90deg, #EF233C calc(50% + 0.5ch), #ffffff 0) right / calc(200% + 1ch) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Required for clip to show */
+  animation: l7 2s infinite steps(10); /* Matching steps to characters */
+}
+
+.blog {
+  max-width: '';
+  padding: 12px 24px;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+    color: #ffffff;
+}
+
+.blog:hover{
+  max-width: '';
+  padding: 12px 24px;
+  background-color: #EF233C;
+  border: 1px solid #EF233C;
+  text-decoration: none;
+    color: #ffffff;
+}
+
+@keyframes l7 {
+  to {
+    background-position: left;
+  }
+}
+
+
 @media(max-width:1023px) {
     .background {
         background-image: url('bannerTab.jpg') !important;
