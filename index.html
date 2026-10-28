@@ -36,19 +36,19 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#home" class="nav-link">About</a>
+                    <a href="#" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link">Work</a>
+                    <a href="#" class="nav-link">Work</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#portfolio" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#contact" class="nav-link">Resume</a>
+                    <a href="#" class="nav-link">Resume</a>
                 </li>
-                </ul>
-            
+            </ul>
+
 
             <!-- CTA Buttons -->
             <div class="cta-buttons">
@@ -88,46 +88,61 @@
         </nav>
     </header>
 
-    <div class="background" style="align-items: center;">
-        <div style="padding:0px 30px; width: 92vw; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-            <div style="background: url('superman.jpeg') no-repeat center/cover; -webkit-background-clip: text;  -webkit-text-fill-color: transparent; display: inline-block;">
-                <span class="homepage_Banner_Name homepage_Banner_Name_web" style="color:#EDF2F4;">Abishek R.</span>
-                <span class="homepage_Banner_Name homepage_Banner_Name_tab" style="color:#EDF2F4;">Abishek R.</span>
-                <span class="homepage_Banner_Name homepage_Banner_Name_mobile" style="color:#EDF2F4;">Abishek R.</span>
+    <div>
+
+        <div class="background" style="align-items: center;">
+            <div
+                style="padding:0px 30px; width: 92vw; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+                <div
+                    style="background: url('superman.jpeg') no-repeat center/cover; -webkit-background-clip: text;  -webkit-text-fill-color: transparent; display: inline-block;">
+                    <span class="homepage_Banner_Name homepage_Banner_Name_web" style="color:#EDF2F4;">Abishek R.</span>
+                    <span class="homepage_Banner_Name homepage_Banner_Name_tab" style="color:#EDF2F4;">Abishek R.</span>
+                    <span class="homepage_Banner_Name homepage_Banner_Name_mobile" style="color:#EDF2F4;">Abishek
+                        R.</span>
+                </div>
+                <p class="homepage_Banner_Tagline homepage_Banner_Tagline_web"
+                    style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
+                    Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
+                </p>
+                <p class="homepage_Banner_Tagline homepage_Banner_Tagline_tab"
+                    style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
+                    Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
+                </p>
+                <p class="homepage_Banner_Tagline homepage_Banner_Tagline_mobile"
+                    style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
+                    Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
+                </p>
             </div>
-            <p class="homepage_Banner_Tagline homepage_Banner_Tagline_web" style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
-                Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
-            </p>
-            <p class="homepage_Banner_Tagline homepage_Banner_Tagline_tab" style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
-                Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
-            </p>
-            <p class="homepage_Banner_Tagline homepage_Banner_Tagline_mobile" style="color:rgba(18, 18, 18, 0.87); padding-top: 4px;">
-                Senior UI/UX Designer | UI Developer — Creating user and developer-friendly digital experiences.
-            </p>
+        </div>
+
+        <div style="background-color: #121212;">
+            <div style="color: #ffffff;">With 5+ years in UI/UX design, I'm a Hybrid UI/UX Designer & UI Developer crafting designs that are
+                intuitive for users and effortless for developers. Blending creativity with clean code, I bridge the gap
+                between design and development to build seamless, responsive experiences</div>
         </div>
     </div>
 
-        <!-- JavaScript for mobile menu toggle -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const navToggle = document.querySelector('.nav-toggle');
-                const navMenu = document.querySelector('.nav-menu');
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
 
-                navToggle.addEventListener('click', function () {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
+            navToggle.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
 
-                // Close menu when clicking on a link
-                const navLinks = document.querySelectorAll('.nav-link');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function () {
-                        navMenu.classList.remove('active');
-                        navToggle.classList.remove('active');
-                    });
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
                 });
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>

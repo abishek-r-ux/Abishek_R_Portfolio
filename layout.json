@@ -1,0 +1,56 @@
+{
+    "collections": [
+        {
+            "name": "layout",
+            "modes": [
+                "Mode 1"
+            ],
+            "variables": {
+                "spacing": {
+                    "xs": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 4
+                        }
+                    },
+                    "sm": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 8
+                        }
+                    },
+                    "md": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 16
+                        }
+                    },
+                    "lg": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 24
+                        }
+                    },
+                    "xl": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 32
+                        }
+                    },
+                    "xxl": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 64
+                        }
+                    },
+                    "huge": {
+                        "type": "number",
+                        "values": {
+                            "Mode 1": 128
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,102 @@
+{
+    "collections": [
+        {
+            "name": "colors",
+            "modes": [
+                "Mode 1"
+            ],
+            "variables": {
+                "global": {
+                    "red": {
+                        "type": "color",
+                        "values": {
+                            "Mode 1": "#e11d2e"
+                        }
+                    },
+                    "blue": {
+                        "type": "color",
+                        "values": {
+                            "Mode 1": "#1d4ed8"
+                        }
+                    },
+                    "charcoal": {
+                        "type": "color",
+                        "values": {
+                            "Mode 1": "#0a0a0a"
+                        }
+                    },
+                    "ash": {
+                        "type": "color",
+                        "values": {
+                            "Mode 1": "#f5f5f5"
+                        }
+                    },
+                    "gray": {
+                        "type": "color",
+                        "values": {
+                            "Mode 1": "#6b7280"
+                        }
+                    }
+                },
+                "semantic": {
+                    "bg": {
+                        "main": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#0a0a0a"
+                            }
+                        },
+                        "surface": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#171717"
+                            }
+                        }
+                    },
+                    "brand": {
+                        "primary": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#e11d2e"
+                            }
+                        },
+                        "secondary": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#1d4ed8"
+                            }
+                        }
+                    },
+                    "text": {
+                        "primary": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#f5f5f5"
+                            }
+                        },
+                        "secondary": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#6b7280"
+                            }
+                        }
+                    },
+                    "border": {
+                        "muted": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#262626"
+                            }
+                        },
+                        "active": {
+                            "type": "color",
+                            "values": {
+                                "Mode 1": "#e11d2e"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
