@@ -163,17 +163,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // Interactive visual feedback on CTA click
 if (ctaBtn) {
   ctaBtn.addEventListener('click', (e) => {
-    // Quick tactical pulse
-    ctaBtn.style.transform = 'scale(0.97)';
-    setTimeout(() => {
-      ctaBtn.style.transform = '';
-    }, 150);
+    const email = 'contact@abishekrux.in';
 
-    // Explicit fallback: trigger the mailto navigation directly
-    const targetUrl = ctaBtn.getAttribute('href');
-    if (targetUrl && targetUrl.startsWith('mailto:')) {
-      window.location.href = targetUrl;
+    // 1. Copy email address to system clipboard
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(email);
+    } else {
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
     }
+
+    // 2. HUD Visual Feedback (Swaps text briefly to confirm transmission)
+    const originalText = ctaBtn.innerHTML;
+    ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>COPIED: ${email} // OPENING COMMS`;
+    ctaBtn.style.backgroundColor = '#1D4ED8'; // Glow blue on copy
+
+    setTimeout(() => {
+      ctaBtn.innerHTML = originalText;
+      ctaBtn.style.backgroundColor = '';
+    }, 2800);
   });
 }
 
