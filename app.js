@@ -161,14 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Interactive visual feedback on CTA click
-  if (ctaBtn) {
-    ctaBtn.addEventListener('click', () => {
-      ctaBtn.style.transform = 'scale(0.97)';
-      setTimeout(() => {
-        ctaBtn.style.transform = '';
-      }, 150);
-    });
-  }
+if (ctaBtn) {
+  ctaBtn.addEventListener('click', (e) => {
+    // Quick tactical pulse
+    ctaBtn.style.transform = 'scale(0.97)';
+    setTimeout(() => {
+      ctaBtn.style.transform = '';
+    }, 150);
+
+    // Explicit fallback: trigger the mailto navigation directly
+    const targetUrl = ctaBtn.getAttribute('href');
+    if (targetUrl && targetUrl.startsWith('mailto:')) {
+      window.location.href = targetUrl;
+    }
+  });
+}
 
   // Initial render
   renderDiagnostics();
