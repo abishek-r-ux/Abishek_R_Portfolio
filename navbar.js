@@ -34,12 +34,11 @@ class SiteNavbar extends HTMLElement {
               [ RESUME // CV ↗ ]
             </a>
 
-            <!-- Mobile Hamburger Toggle Button: Upright "A" to "X" Morpher -->
-            <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-              <span class="hamburger-bar bar-1"></span>
-              <span class="hamburger-bar bar-2"></span>
-              <span class="hamburger-bar bar-3"></span>
-            </button>
+            <!-- Mobile Hamburger Toggle Button: Clean 2-Line HUD Morpher -->
+<button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+  <span class="hamburger-bar bar-1"></span>
+  <span class="hamburger-bar bar-2"></span>
+</button>
           </div>
         </nav>
 

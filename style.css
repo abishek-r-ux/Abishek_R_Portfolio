@@ -388,21 +388,23 @@ site-navbar {
 }
 
 /* ==========================================================================
-   MOBILE TOGGLE: Upright "A" to "X" MORPHING ENGINE
+   MOBILE TOGGLE: MINIMAL TWO-LINE HUD MORPHING ENGINE
    ========================================================================== */
 .nav-toggle-btn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: 0;
   cursor: pointer;
   padding: 0;
   z-index: 50;
   outline: none;
+  gap: 6px; /* Clean spacing between the two lines */
 }
 
 @media (min-width: 768px) {
@@ -410,54 +412,35 @@ site-navbar {
 }
 
 .nav-toggle-btn .hamburger-bar {
-  position: absolute;
   display: block;
+  width: 22px;
   height: 2px;
   background-color: var(--color-global-ash);
   border-radius: 1px;
-  transform-origin: center center;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.2s ease,
-              background-color 0.25s ease,
-              width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              width 0.2s ease;
 }
 
-.nav-toggle-btn .hamburger-bar.bar-1 {
-  width: 22px;
-  transform: translateX(-4px) rotate(-68deg);
-}
-
-.nav-toggle-btn .hamburger-bar.bar-2 {
-  width: 12px;
-  transform: translateY(2px);
-}
-
-.nav-toggle-btn .hamburger-bar.bar-3 {
-  width: 22px;
-  transform: translateX(4px) rotate(68deg);
-}
-
+/* Hover state */
 .nav-toggle-btn:hover .hamburger-bar {
   background-color: var(--color-brand-primary);
 }
 
-.nav-toggle-btn.open .hamburger-bar.bar-1 {
-  width: 24px;
+/* STATE: Active / Open (Smooth "X" Cross) */
+.nav-toggle-btn.open .hamburger-bar {
   background-color: var(--color-brand-primary);
-  transform: translateX(0) translateY(0) rotate(45deg);
+}
+
+.nav-toggle-btn.open .hamburger-bar.bar-1 {
+  transform: translateY(4px) rotate(45deg);
 }
 
 .nav-toggle-btn.open .hamburger-bar.bar-2 {
-  width: 0;
-  opacity: 0;
-  transform: scaleX(0);
+  transform: translateY(-4px) rotate(-45deg);
 }
 
-.nav-toggle-btn.open .hamburger-bar.bar-3 {
-  width: 24px;
-  background-color: var(--color-brand-primary);
-  transform: translateX(0) translateY(0) rotate(-45deg);
-}
 
 /* Mobile Nav Drawer */
 .mobile-nav-drawer {
@@ -512,7 +495,7 @@ site-navbar {
   height: 14px;
   pointer-events: none;
   overflow: visible;
-  z-index: 35;
+  z-index: 60;
 }
 
 .nav-spider-patrol {
