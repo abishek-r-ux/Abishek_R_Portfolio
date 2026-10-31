@@ -112,7 +112,6 @@ body {
 
 /* Desktop Lock: Pure 100vh Viewport with Zero Page Scrollbars */
 @media (min-width: 1024px) {
-
   html,
   body {
     height: 100vh;
@@ -150,12 +149,14 @@ site-navbar {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.08) 15%,
-      rgba(225, 29, 46, 0.6) 50%,
-      rgba(29, 78, 216, 0.4) 75%,
-      transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 15%,
+    rgba(225, 29, 46, 0.6) 50%,
+    rgba(29, 78, 216, 0.4) 75%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
@@ -598,148 +599,73 @@ site-navbar {
 }
 
 /* ==========================================================================
-   ATMOSPHERE // DYNAMIC DRIFTING AMBIENT GLOW ORBS
-   GPU-Accelerated Organic Multi-Axis Drifts
+   ATMOSPHERE // STATIC HARDWARE-OPTIMIZED AMBIENT GLOW ORBS
+   Zero GPU Frame Thrashing, High-Fidelity Pure Radial Gradients
    ========================================================================== */
-
-
-/* ==========================================================================
-   ATMOSPHERE // CONTINUOUS SCREENSAVER AMBIENT ORB ENGINE
-   GPU-Accelerated Wide-Stage Lissajous Float
-   ========================================================================== */
-
-/* ==========================================================================
-   ATMOSPHERE // HIGH-ENERGY SCREENSAVER AMBIENT ORB ENGINE
-   Fluid, Enthusiastic Lissajous Orbital Sweep
-   ========================================================================== */
-
-/* 1. Dynamic Royal Blue Surge Orb */
-
-/* ==========================================================================
-   ATMOSPHERE // MOBILE & TABLET HARDENED GLOW ENGINE
-   Hardware-Composited Lissajous Orbital Sweep
-   ========================================================================== */
-
 .ambient-glow-blue,
 .ambient-glow-red {
-  position: fixed;
+  position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  /* Force dedicated mobile GPU compositing layer */
-  will-change: transform;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
 
-/* 1. Dynamic Royal Blue Surge Orb */
+/* 1. Large Royal Blue Ambient Orb: Anchored behind the diagnostics card */
 .ambient-glow-blue {
-  top: 40%;
-  right: 5%;
-  width: min(650px, 60vw);
-  height: min(650px, 60vw);
-  /* The gradient carries the diffusion so mobile GPU doesn't choke on blur */
-  background: radial-gradient(circle at center,
-      rgba(29, 78, 216, 0.55) 0%,
-      rgba(29, 78, 216, 0.3) 30%,
-      rgba(29, 78, 216, 0.1) 55%,
-      rgba(29, 78, 216, 0) 72%);
-  filter: blur(24px);
-  -webkit-filter: blur(24px);
-  animation: orbSurgeBlue 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-
-/* 2. Rapid Crimson Accent Orb */
-.ambient-glow-red {
   top: 50%;
-  left: 5%;
-  width: min(440px, 45vw);
-  height: min(440px, 45vw);
-  background: radial-gradient(circle at center,
-      rgba(225, 29, 46, 0.52) 0%,
-      rgba(225, 29, 46, 0.28) 35%,
-      rgba(225, 29, 46, 0.08) 55%,
-      rgba(225, 29, 46, 0) 72%);
-  filter: blur(20px);
-  -webkit-filter: blur(20px);
-  animation: orbSurgeRed 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  right: 0%;
+  transform: translateY(-50%);
+  width: min(720px, 55vw);
+  height: min(720px, 55vw);
+  background: radial-gradient(
+    circle at center,
+    rgba(29, 78, 216, 0.42) 0%,
+    rgba(29, 78, 216, 0.22) 35%,
+    rgba(29, 78, 216, 0.08) 60%,
+    transparent 78%
+  );
+  filter: blur(85px);
+  -webkit-filter: blur(85px);
 }
 
-/* Global Full-Spectrum Sweep Loops (Single Unified Keyframe Definition) */
-@keyframes orbSurgeBlue {
-  0% {
-    transform: translate3d(0, -50%, 0) scale(1);
-  }
-
-  20% {
-    transform: translate3d(-140px, -65%, 0) scale(1.18);
-  }
-
-  40% {
-    transform: translate3d(-260px, -35%, 0) scale(0.92);
-  }
-
-  65% {
-    transform: translate3d(-100px, -20%, 0) scale(1.14);
-  }
-
-  85% {
-    transform: translate3d(100px, -45%, 0) scale(0.96);
-  }
-
-  100% {
-    transform: translate3d(0, -50%, 0) scale(1);
-  }
+/* 2. Concentrated Red Accent Orb: Anchored beneath the CTA column */
+.ambient-glow-red {
+  top: 58%;
+  left: 14%;
+  transform: translateY(-50%);
+  width: min(440px, 38vw);
+  height: min(440px, 38vw);
+  background: radial-gradient(
+    circle at center,
+    rgba(225, 29, 46, 0.38) 0%,
+    rgba(225, 29, 46, 0.18) 40%,
+    rgba(225, 29, 46, 0.04) 65%,
+    transparent 80%
+  );
+  filter: blur(75px);
+  -webkit-filter: blur(75px);
 }
 
-@keyframes orbSurgeRed {
-  0% {
-    transform: translate3d(0, -50%, 0) scale(1);
-  }
-
-  25% {
-    transform: translate3d(160px, -30%, 0) scale(1.2);
-  }
-
-  45% {
-    transform: translate3d(260px, -60%, 0) scale(0.9);
-  }
-
-  70% {
-    transform: translate3d(90px, -70%, 0) scale(1.15);
-  }
-
-  85% {
-    transform: translate3d(-60px, -35%, 0) scale(0.94);
-  }
-
-  100% {
-    transform: translate3d(0, -50%, 0) scale(1);
-  }
-}
-
-/* Mobile & Tablet Viewports: Calibrate Scale Only (Do NOT redefine @keyframes) */
+/* Mobile & Touch Responsive Bounds */
 @media (max-width: 1023px) {
   .ambient-glow-blue {
-    width: 82vw;
-    height: 82vw;
-    filter: blur(18px);
-    -webkit-filter: blur(18px);
-    animation-duration: 7s;
+    top: 65%;
+    right: -15%;
+    width: 90vw;
+    height: 90vw;
+    filter: blur(65px);
+    -webkit-filter: blur(65px);
   }
 
   .ambient-glow-red {
-    width: 72vw;
-    height: 72vw;
-    filter: blur(16px);
-    -webkit-filter: blur(16px);
-    animation-duration: 5.5s;
+    top: 25%;
+    left: -10%;
+    width: 75vw;
+    height: 75vw;
+    filter: blur(55px);
+    -webkit-filter: blur(55px);
   }
 }
-
 
 /* ==========================================================================
    BACKGROUND WATERMARK IMAGE SPEC
@@ -754,7 +680,6 @@ site-navbar {
   user-select: none;
   z-index: 0;
   opacity: 0.3;
-
 }
 
 @media (max-width: 1023px) {
@@ -964,9 +889,11 @@ site-navbar {
 }
 
 .cta-spider-btn:hover {
-  background: linear-gradient(90deg,
-      rgba(225, 29, 46, 1) 0%,
-      rgba(29, 78, 216, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(225, 29, 46, 1) 0%,
+    rgba(29, 78, 216, 1) 100%
+  );
   transform: translateY(-2px);
   box-shadow: 0 10px 30px -4px rgba(225, 29, 46, 0.65);
 }
@@ -987,9 +914,6 @@ site-navbar {
 }
 
 /* ==========================================================================
-   DIAGNOSTICS & TELEMETRY CARD SPEC
-   ========================================================================== */
-/* ==========================================================================
    LIQUID GLASS CARD // APPLE OPTICAL GLASS SPEC
    Multi-layered Fresnel Highlights, Caustic Rims & Chromatic Saturation
    ========================================================================== */
@@ -1004,7 +928,6 @@ site-navbar {
       rgba(14, 14, 18, 0.55) 55%,
       rgba(4, 4, 6, 0.82) 100%
     );
-  /* Heavy saturation boost prevents colors drifting behind the card from desaturating */
   backdrop-filter: blur(32px) saturate(190%) contrast(108%);
   -webkit-backdrop-filter: blur(32px) saturate(190%) contrast(108%);
   border-radius: var(--space-lg);
@@ -1013,18 +936,12 @@ site-navbar {
   flex-direction: column;
   gap: var(--space-md);
   
-  /* Physical glass double-stroke: Crisp highlight rim over soft ambient shadow */
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
-    /* Upper-lip direct Fresnel reflection */
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
-    /* Internal perimeter glass refraction shelf */
     inset 0 0 20px 0 rgba(255, 255, 255, 0.04),
-    /* Deep bottom ambient glass compression */
     inset 0 -12px 28px -4px rgba(0, 0, 0, 0.85),
-    /* Soft elevation drop shadow */
     0 24px 48px -12px rgba(0, 0, 0, 0.75),
-    /* Outer atmospheric color bleed from Spider palette */
     0 0 40px -10px rgba(29, 78, 216, 0.22);
   
   isolation: isolate;
@@ -1118,7 +1035,7 @@ site-navbar {
   }
 }
 
-/* 1. The Dynamic Sliding Indicator (Pill) */
+/* Dynamic Sliding Indicator (Pill) */
 .tab-indicator {
   position: absolute;
   top: var(--space-xs);
@@ -1135,7 +1052,6 @@ site-navbar {
   z-index: 1;
 }
 
-/* Shift pill to the second tab */
 .tabs-container[data-active="STACK"] .tab-indicator {
   transform: translate3d(100%, 0, 0);
 }
@@ -1168,8 +1084,8 @@ site-navbar {
 }
 
 .tab-btn.active {
-color: var(--color-text-primary);
-  background: transparent; /* Background now handled by the sliding pill */
+  color: var(--color-text-primary);
+  background: transparent;
   border: none;
   box-shadow: none;
 }
@@ -1177,7 +1093,7 @@ color: var(--color-text-primary);
 /* Telemetry Feed Rows */
 .diag-feed-window {
   width: 100%;
-  overflow: hidden; /* Clips the horizontal feed transition on mobile */
+  overflow: hidden;
   position: relative;
 }
 
@@ -1250,7 +1166,7 @@ color: var(--color-text-primary);
   user-select: none;
 }
 
-* Mobile Slide In Directions */
+/* Mobile Slide In Directions */
 .slide-from-right {
   animation: slideInRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

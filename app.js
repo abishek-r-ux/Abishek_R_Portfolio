@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activeTab = 'SYSTEMS';
 
-  // Touch vs Non-Touch Device Detection
   function isTouchDevice() {
     return (
       'ontouchstart' in window ||
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
-  // Render Telemetry Rows
+  // Render Telemetry Rows with Directional Slide Class Support
   function renderDiagnostics(slideAnimationClass = '') {
     const container = document.getElementById('diagnostics-feed');
     if (!container) return;
@@ -79,35 +78,37 @@ document.addEventListener('DOMContentLoaded', () => {
       container.classList.add(slideAnimationClass);
     }
 
-    container.innerHTML = visibleRecords.map(item => {
-      if (item.isStatus) {
-        return `
-        <div class="diag-row" id="${item.id}">
-          <div class="diag-status-row">
-            <div>
-              <div class="diag-label">${item.label}</div>
-              <div class="diag-value">${item.value}</div>
+    container.innerHTML = visibleRecords
+      .map(item => {
+        if (item.isStatus) {
+          return `
+            <div class="diag-row" id="${item.id}">
+              <div class="diag-status-row">
+                <div>
+                  <div class="diag-label">${item.label}</div>
+                  <div class="diag-value">${item.value}</div>
+                </div>
+                <div class="diag-status-beacon" title="Node Online & Synced">
+                  <span class="status-beacon-dot"></span>
+                  SYS_ONLINE
+                </div>
+              </div>
             </div>
-            <div class="diag-status-beacon" title="Node Online & Synced">
-              <span class="status-beacon-dot"></span>
-              SYS_ONLINE
-            </div>
-          </div>
-        </div>
-      `;
-      }
+          `;
+        }
 
-      return `
-      <div class="diag-row" id="${item.id}">
-        <div class="diag-label">${item.label}</div>
-        <div class="diag-value">${item.value}</div>
-        ${item.meta ? `<div class="diag-meta">${item.meta}</div>` : ''}
-      </div>
-    `;
-    }).join('');
+        return `
+          <div class="diag-row" id="${item.id}">
+            <div class="diag-label">${item.label}</div>
+            <div class="diag-value">${item.value}</div>
+            ${item.meta ? `<div class="diag-meta">${item.meta}</div>` : ''}
+          </div>
+        `;
+      })
+      .join('');
   }
 
-  // Tab Switch Handler
+  // Tab Switch Handler with Pill Slide Sync
   function switchTab(btn) {
     if (!btn) return;
     const targetTab = btn.getAttribute('data-tab');
@@ -116,27 +117,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const previousTab = activeTab;
     activeTab = targetTab;
 
-    // 1. Update data-active attribute so CSS slides the pill indicator
-    const tabsContainer = document.querySelector('.tabs-container');
+    // 1. Move the CSS sliding pill indicator
     if (tabsContainer) {
       tabsContainer.setAttribute('data-active', activeTab);
     }
 
-    // 2. Toggle active button attributes
+    // 2. Toggle button state
     document.querySelectorAll('.tab-btn').forEach(b => {
       const isCurrent = b.getAttribute('data-tab') === activeTab;
       b.classList.toggle('active', isCurrent);
       b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
     });
 
-    // 3. Determine directional slide (Left to Right vs Right to Left)
+    // 3. Determine directional slide animation
     const isMovingForward = previousTab === 'SYSTEMS' && targetTab === 'STACK';
     const slideClass = isMovingForward ? 'slide-from-right' : 'slide-from-left';
 
     renderDiagnostics(slideClass);
   }
 
-  // Delegated Tab Listeners (Supports both click & touch)
+  // Delegated Tab Listeners
   if (tabsContainer) {
     tabsContainer.addEventListener('click', (e) => {
       const btn = e.target.closest('.tab-btn');
@@ -172,53 +172,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Resilient CTA Transmitter with Auto-Copy Fallback
-if (ctaBtn) {
-  ctaBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  // Tactical CTA Comms Transmitter (Windows-Safe Protocol Router)
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', (e) => {
+      e.preventDefault();
 
-    const email = ctaBtn.getAttribute('data-email') || 'abishekrux@gmail.com';
-    const subject = ctaBtn.getAttribute('data-subject') || 'Engagement Inquiry // ARUX.OS';
-    const encodedSubject = encodeURIComponent(subject);
+      const email = ctaBtn.getAttribute('data-email') || 'abishekrux@gmail.com';
+      const subject = ctaBtn.getAttribute('data-subject') || 'Engagement Inquiry // ARUX.OS';
+      const encodedSubject = encodeURIComponent(subject);
 
-    // 1. Instantly copy address to system clipboard
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(email);
-    } else {
-      const tempInput = document.createElement('input');
-      tempInput.value = email;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-    }
-
-    // 2. HUD Visual Feedback (Swaps button text & activates HUD blue)
-    const originalHTML = ctaBtn.innerHTML;
-    ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>COPIED: ${email} // OPENING...`;
-    ctaBtn.style.backgroundColor = 'var(--color-brand-secondary, #1D4ED8)';
-
-    // 3. Environment-Aware Dispatch:
-    // If mobile: native mailto works without error.
-    // If desktop (Windows/Mac): open Web Gmail compose directly in a new tab to avoid OS crash dialog.
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    setTimeout(() => {
-      if (isMobile) {
-        window.location.href = `mailto:${email}?subject=${encodedSubject}`;
+      // 1. Copy to clipboard
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email);
       } else {
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodedSubject}`;
-        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+        const tempInput = document.createElement('input');
+        tempInput.value = email;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
       }
 
-      // Reset button state
+      // 2. HUD Visual Feedback
+      const originalHTML = ctaBtn.innerHTML;
+      ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>COPIED: ${email} // OPENING...`;
+      ctaBtn.style.backgroundColor = 'var(--color-brand-secondary, #1D4ED8)';
+
+      // 3. Platform Routing
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
       setTimeout(() => {
-        ctaBtn.innerHTML = originalHTML;
-        ctaBtn.style.backgroundColor = '';
-      }, 2400);
-    }, 400);
-  });
-}
+        if (isMobile) {
+          window.location.href = `mailto:${email}?subject=${encodedSubject}`;
+        } else {
+          const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodedSubject}`;
+          window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        setTimeout(() => {
+          ctaBtn.innerHTML = originalHTML;
+          ctaBtn.style.backgroundColor = '';
+        }, 2400);
+      }, 400);
+    });
+  }
 
   // Initial Telemetry Render
   renderDiagnostics();
