@@ -4,7 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARUX.OS | Abishek R. — Senior Product Designer &amp; Design Technologist</title>
+  <!-- Primary Dynamic SVG Favicon (Sharp on all screen densities & supports theme accent) -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg">
+
+  <!-- Standard Fallback Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+
+  <!-- Apple Touch Icon (iOS Home Screen) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+
+  <!-- Optional Manifest Accent Theme -->
+  <meta name="theme-color" content="#0A0A0A">
+
+  <title>Abishek R. — Senior Product Designer &amp; Design Technologist</title>
   <meta name="description"
     content="ARUX.OS - Dark HUD spider aesthetic portfolio for Abishek R., Senior Product Designer &amp; Design Technologist." />
 
@@ -26,100 +39,76 @@
   <script src="./navbar.js"></script>
 </head>
 
-<body
-  class="bg-[#0A0A0A] text-[#F5F5F5] antialiased selection:bg-[#E11D2E] selection:text-white relative flex flex-col justify-between">
+<body>
   <!-- Ambient Atmospheric Lighting -->
   <div class="ambient-glow-blue" aria-hidden="true"></div>
   <div class="ambient-glow-red" aria-hidden="true"></div>
 
-  <!-- Background Spider Watermark SVG -->
-  <svg class="spider-watermark" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="400" cy="400" r="380" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 12" />
-    <circle cx="400" cy="400" r="320" stroke="currentColor" stroke-width="1" />
-    <circle cx="400" cy="400" r="260" stroke="currentColor" stroke-width="1.5" stroke-dasharray="16 24" />
-
-    <polygon points="400,160 380,210 420,210" stroke="currentColor" stroke-width="3" fill="currentColor" fill-opacity="0.1" />
-    <path d="M380,180 L365,165 M420,180 L435,165" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-
-    <polygon points="400,225 365,270 375,320 400,340 425,320 435,270" stroke="currentColor" stroke-width="3.5" fill="currentColor" fill-opacity="0.15" />
-    <polygon points="400,355 350,420 365,540 400,640 435,540 450,420" stroke="currentColor" stroke-width="4" fill="currentColor" fill-opacity="0.2" />
-    <path d="M400,370 L400,610 M370,450 L430,450 M375,510 L425,510" stroke="currentColor" stroke-width="2" />
-
-    <!-- Left Legs -->
-    <path d="M375,245 L290,170 L210,130 L160,80" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M368,275 L260,240 L170,220 L100,210" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M370,305 L270,330 L180,390 L110,480" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M380,335 L300,420 L230,550 L190,690" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-
-    <!-- Right Legs -->
-    <path d="M425,245 L510,170 L590,130 L640,80" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M432,275 L540,240 L630,220 L700,210" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M430,305 L530,330 L620,390 L690,480" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M420,335 L500,420 L570,550 L610,690" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-
-    <!-- Joint Nodes -->
-    <circle cx="290" cy="170" r="4" fill="currentColor" />
-    <circle cx="210" cy="130" r="4" fill="currentColor" />
-    <circle cx="260" cy="240" r="4" fill="currentColor" />
-    <circle cx="270" cy="330" r="4" fill="currentColor" />
-    <circle cx="510" cy="170" r="4" fill="currentColor" />
-    <circle cx="590" cy="130" r="4" fill="currentColor" />
-    <circle cx="540" cy="240" r="4" fill="currentColor" />
-    <circle cx="530" cy="330" r="4" fill="currentColor" />
-  </svg>
+  <!-- Background Spider Watermark Asset -->
+  <img src="./assets/images/watermark.png" alt="" class="spider-watermark" aria-hidden="true" loading="eager"
+    decoding="async" />
 
   <!-- Global Sticky Header Web Component -->
   <site-navbar id="home"></site-navbar>
 
   <!-- Main Hero Stage: Centered on mobile with generous spacing; Left-aligned on Desktop -->
-  <main class="hero-stage-container w-full max-w-[1400px] mx-auto px-6 sm:px-10 py-10 lg:py-0 relative z-10 flex-grow flex items-center justify-center">
-    <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+  <main class="hero-stage-container">
+    <div class="hero-grid">
 
       <!-- index.html hero section -->
-<section class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left justify-center">
-  <h1 class="text-hero font-display font-black text-[#F5F5F5] mb-2 uppercase">
-    ABISHEK R.
-  </h1>
+      <section class="hero-content-col">
+        <h1 class="hero-title">
+          ABISHEK R.
+        </h1>
 
-  <h2 class="text-h2 font-display font-bold text-[#E11D2E] leading-snug mb-4 uppercase max-w-xl">
-    SR. PRODUCT DESIGNER &amp;<br class="hidden sm:inline" />
-    DESIGN TECHNOLOGIST
-  </h2>
+        <h2 class="hero-subtitle">
+          SR. PRODUCT DESIGNER &amp;<br class="br-desktop" />
+          DESIGN TECHNOLOGIST
+        </h2>
 
-  <p class="font-body text-[#A1A1AA] text-sm sm:text-base leading-relaxed max-w-2xl mb-6 font-normal">
-    I architect scalable enterprise platforms and design systems from zero to production. Whether leading product
+        <p class="hero-description">
+          I architect scalable enterprise platforms and design systems from zero to production. Whether leading product
           UI inside engineering teams or launching turnkey digital applications for private clients, I bridge complex
           Figma architectures with production-grade Angular, TypeScript, and Tailwind CSS.
-  </p>
+        </p>
 
-  <div class="w-full sm:w-auto flex justify-center lg:justify-start">
-    <a href="mailto:contact@abishekrux.in" class="cta-spider-btn">
-      INITIATE COMMS // HIRE &amp; CONSULT
-    </a>
-  </div>
-</section>
+        <div class="hero-cta-wrapper">
+          <a href="#contact" id="main-cta-btn" class="cta-spider-btn" data-email="abishekrux@gmail.com"
+            data-subject="Engagement Inquiry // ARUX.OS" title="Initiate Encrypted Transmission">
+            <span class="cta-pulse-beacon"></span>
+            INITIATE COMMS // HIRE &amp; CONSULT
+          </a>
+        </div>
+      </section>
 
       <!-- Diagnostics Card: Centered container on mobile with breathable breathing room -->
-      <section class="lg:col-span-5 flex justify-center lg:justify-end w-full">
-        <div class="w-full max-w-[440px] sm:max-w-[480px]">
-          <div class="liquid-glass liquid-glass-card p-6 sm:p-7" role="region" aria-label="System Diagnostics">
-            <div
-              class="text-center font-mono text-[11px] sm:text-xs text-[#6B7280] tracking-widest uppercase mb-4 select-none">
+      <section class="hero-card-col">
+        <div class="hero-card-wrapper">
+          <div class="liquid-glass-card" role="region" aria-label="System Diagnostics">
+
+            <!-- Top HUD Diagnostic Badge -->
+            <div class="diag-header-status">
               [ DIAGNOSTICS // STATUS: NOMINAL ]
             </div>
 
-            <!-- Touch / Mobile-Only Device Tabs -->
-            <div id="diagnostics-tabs" class="tabs-container mb-5" role="tablist"
-              aria-label="Diagnostics Categories">
-              <button class="tab-btn active" data-tab="PROFILE" role="tab" aria-selected="true">PROFILE</button>
-              <button class="tab-btn" data-tab="CODE" role="tab" aria-selected="false">CODE</button>
-              <button class="tab-btn" data-tab="NETWORK" role="tab" aria-selected="false">NETWORK</button>
+            <!-- Mobile-Gated 2-Tab Switcher -->
+            <div class="tabs-container" role="tablist" aria-label="Diagnostics Display Modes">
+              <span class="tab-indicator" aria-hidden="true"></span>
+              <button class="tab-btn active" data-tab="SYSTEMS" role="tab" aria-selected="true">
+                SYSTEMS
+              </button>
+              <button class="tab-btn" data-tab="STACK" role="tab" aria-selected="false">
+                STACK
+              </button>
             </div>
 
-            <!-- Dynamic Diagnostic Telemetry Rows Container -->
-            <div id="diagnostics-content" class="space-y-4 lg:space-y-3">
-              <!-- Rendered dynamically via app.js -->
+            <!-- Diagnostics Viewport with Slide Transition Window -->
+            <div class="diag-feed-window">
+              <div id="diagnostics-feed" class="diag-feed-container" aria-live="polite">
+                <!-- Rendered via app.js -->
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -128,8 +117,8 @@
   </main>
 
   <!-- Footer Links: Centered on mobile -->
-  <footer class="w-full relative z-20 max-w-[1400px] mx-auto px-6 sm:px-10 py-6 sm:py-6">
-    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-5 sm:gap-6">
+  <div class="stage-baseline-dock" role="navigation" aria-label="External Transmissions">
+    <div class="dock-links-group">
       <a href="https://www.linkedin.com/in/abishek-devaraja-r/" target="_blank" rel="noopener noreferrer"
         class="footer-bracket-link" title="LinkedIn Profile">
         [ LN / LINKEDIN ]
@@ -143,9 +132,9 @@
         [ GH / GITHUB ]
       </a>
     </div>
-  </footer>
+  </div>
 
   <script src="./app.js"></script>
-</body>
+  </bodys=>
 
 </html>

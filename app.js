@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const DIAGNOSTIC_RECORDS = [
     {
       id: 'row-1',
-      category: 'PROFILE',
+      category: 'SYSTEMS',
       label: 'Role & Engagement:',
       value: 'Senior Product Designer (FTE) & Systems Consultant',
       meta: null,
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'row-2',
-      category: 'PROFILE',
+      category: 'SYSTEMS',
       label: 'Core Focus:',
       value: 'Enterprise ERP Platforms, Dense UI & Scalable Systems',
       meta: null,
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'row-3',
-      category: 'CODE',
+      category: 'STACK',
       label: 'Workflow Engine:',
       value: 'Figma Variables ➔ Design Tokens ➔ Modular Code',
       meta: null,
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'row-4',
-      category: 'CODE',
+      category: 'STACK',
       label: 'Design Tokens:',
       value: 'W3C Compliant Spec',
       meta: '[ PARSING: VALID // SYNCED ]',
@@ -39,109 +39,121 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'row-5',
-      category: 'NETWORK',
+      category: 'STACK',
       label: 'Core Codebase:',
       value: 'Angular / TypeScript / Tailwind CSS / SCSS',
-      meta: null,
-      isStatus: false
-    },
-    {
-      id: 'row-6',
-      category: 'NETWORK',
-      label: 'Status Beacon:',
-      value: 'cPanel Edge Deployment // Global Remote',
       meta: null,
       isStatus: true
     }
   ];
 
-  const diagnosticsContainer = document.getElementById('diagnostics-content');
-  const tabsContainer = document.getElementById('diagnostics-tabs');
-  const tabButtons = document.querySelectorAll('.tab-btn');
   const cardElement = document.querySelector('.liquid-glass-card');
+  const tabsContainer = document.querySelector('.tabs-container');
   const ctaBtn = document.getElementById('main-cta-btn');
-
-  let currentCategory = 'PROFILE';
   const BREAKPOINT_DESKTOP = 1024;
+
+  let activeTab = 'SYSTEMS';
 
   // Touch vs Non-Touch Device Detection
   function isTouchDevice() {
-    return ('ontouchstart' in window) ||
-           (navigator.maxTouchPoints > 0) ||
-           (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < BREAKPOINT_DESKTOP);
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
   }
 
-  function createRowHTML(item) {
-    if (item.isStatus) {
-      return `
-        <div class="diag-row animate-fade-in" data-category="${item.category}">
-          <div class="diag-label">${item.label}</div>
-          <div class="diag-value flex items-center justify-between flex-wrap gap-2">
-            <span>${item.value}</span>
-            <span class="inline-flex items-center text-xs font-mono text-[#E11D2E] font-semibold tracking-wider">
-              <span class="status-beacon-dot"></span>SYS_ONLINE
-            </span>
+  // Render Telemetry Rows
+  function renderDiagnostics(slideAnimationClass = '') {
+    const container = document.getElementById('diagnostics-feed');
+    if (!container) return;
+
+    const isDesktop = window.innerWidth >= BREAKPOINT_DESKTOP;
+    const visibleRecords = isDesktop
+      ? DIAGNOSTIC_RECORDS
+      : DIAGNOSTIC_RECORDS.filter(record => record.category === activeTab);
+
+    // Apply slide animation class on mobile/touch switches
+    container.className = 'diag-feed-container';
+    if (!isDesktop && slideAnimationClass) {
+      container.classList.add(slideAnimationClass);
+    }
+
+    container.innerHTML = visibleRecords.map(item => {
+      if (item.isStatus) {
+        return `
+        <div class="diag-row" id="${item.id}">
+          <div class="diag-status-row">
+            <div>
+              <div class="diag-label">${item.label}</div>
+              <div class="diag-value">${item.value}</div>
+            </div>
+            <div class="diag-status-beacon" title="Node Online & Synced">
+              <span class="status-beacon-dot"></span>
+              SYS_ONLINE
+            </div>
           </div>
         </div>
       `;
-    }
+      }
 
-    return `
-      <div class="diag-row animate-fade-in" data-category="${item.category}">
+      return `
+      <div class="diag-row" id="${item.id}">
         <div class="diag-label">${item.label}</div>
         <div class="diag-value">${item.value}</div>
         ${item.meta ? `<div class="diag-meta">${item.meta}</div>` : ''}
       </div>
     `;
+    }).join('');
   }
 
-  function renderDiagnostics() {
-    if (!diagnosticsContainer) return;
+  // Tab Switch Handler
+  function switchTab(btn) {
+    if (!btn) return;
+    const targetTab = btn.getAttribute('data-tab');
+    if (!targetTab || targetTab === activeTab) return;
 
-    const desktopMode = window.innerWidth >= BREAKPOINT_DESKTOP && !isTouchDevice();
+    const previousTab = activeTab;
+    activeTab = targetTab;
 
-    if (desktopMode) {
-      // Desktop: Show all diagnostic records at once, hide tabs
-      if (tabsContainer) tabsContainer.style.display = 'none';
-      diagnosticsContainer.innerHTML = DIAGNOSTIC_RECORDS.map(createRowHTML).join('');
-    } else {
-      // Touch/Mobile: Show category-filtered records with tabs
-      if (tabsContainer) tabsContainer.style.display = 'flex';
-      const filtered = DIAGNOSTIC_RECORDS.filter((row) => row.category === currentCategory);
-      diagnosticsContainer.innerHTML = filtered.map(createRowHTML).join('');
+    // 1. Update data-active attribute so CSS slides the pill indicator
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (tabsContainer) {
+      tabsContainer.setAttribute('data-active', activeTab);
     }
-  }
 
-  function handleTabClick(event) {
-    const target = event.currentTarget;
-    const category = target.getAttribute('data-tab');
-
-    if (!category || category === currentCategory) return;
-    currentCategory = category;
-
-    tabButtons.forEach((btn) => {
-      const isActive = btn === target;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    // 2. Toggle active button attributes
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      const isCurrent = b.getAttribute('data-tab') === activeTab;
+      b.classList.toggle('active', isCurrent);
+      b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
     });
 
-    renderDiagnostics();
+    // 3. Determine directional slide (Left to Right vs Right to Left)
+    const isMovingForward = previousTab === 'SYSTEMS' && targetTab === 'STACK';
+    const slideClass = isMovingForward ? 'slide-from-right' : 'slide-from-left';
+
+    renderDiagnostics(slideClass);
   }
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener('click', handleTabClick);
-  });
+  // Delegated Tab Listeners (Supports both click & touch)
+  if (tabsContainer) {
+    tabsContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-btn');
+      if (btn) switchTab(btn);
+    });
+  }
 
-  // Handle window resizing
+  // Debounced Window Resizing
   let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       renderDiagnostics();
-    }, 80);
+    }, 100);
   });
 
-  // 3D Tilt effect only active on non-touch desktop web
+  // 3D Liquid Glass Tilt (Desktop Mouse Interaction Only)
   if (cardElement && window.innerWidth >= BREAKPOINT_DESKTOP && !isTouchDevice()) {
     cardElement.addEventListener('mousemove', (e) => {
       const rect = cardElement.getBoundingClientRect();
@@ -160,12 +172,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Interactive visual feedback on CTA click
+  // Resilient CTA Transmitter with Auto-Copy Fallback
 if (ctaBtn) {
   ctaBtn.addEventListener('click', (e) => {
-    const email = 'contact@abishekrux.in';
+    e.preventDefault();
 
-    // 1. Copy email address to system clipboard
+    const email = ctaBtn.getAttribute('data-email') || 'abishekrux@gmail.com';
+    const subject = ctaBtn.getAttribute('data-subject') || 'Engagement Inquiry // ARUX.OS';
+    const encodedSubject = encodeURIComponent(subject);
+
+    // 1. Instantly copy address to system clipboard
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(email);
     } else {
@@ -177,18 +193,33 @@ if (ctaBtn) {
       document.body.removeChild(tempInput);
     }
 
-    // 2. HUD Visual Feedback (Swaps text briefly to confirm transmission)
-    const originalText = ctaBtn.innerHTML;
-    ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>COPIED: ${email} // OPENING COMMS`;
-    ctaBtn.style.backgroundColor = '#1D4ED8'; // Glow blue on copy
+    // 2. HUD Visual Feedback (Swaps button text & activates HUD blue)
+    const originalHTML = ctaBtn.innerHTML;
+    ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>COPIED: ${email} // OPENING...`;
+    ctaBtn.style.backgroundColor = 'var(--color-brand-secondary, #1D4ED8)';
+
+    // 3. Environment-Aware Dispatch:
+    // If mobile: native mailto works without error.
+    // If desktop (Windows/Mac): open Web Gmail compose directly in a new tab to avoid OS crash dialog.
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     setTimeout(() => {
-      ctaBtn.innerHTML = originalText;
-      ctaBtn.style.backgroundColor = '';
-    }, 2800);
+      if (isMobile) {
+        window.location.href = `mailto:${email}?subject=${encodedSubject}`;
+      } else {
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodedSubject}`;
+        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      }
+
+      // Reset button state
+      setTimeout(() => {
+        ctaBtn.innerHTML = originalHTML;
+        ctaBtn.style.backgroundColor = '';
+      }, 2400);
+    }, 400);
   });
 }
 
-  // Initial render
+  // Initial Telemetry Render
   renderDiagnostics();
 });
