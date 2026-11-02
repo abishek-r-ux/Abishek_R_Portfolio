@@ -47,12 +47,13 @@
   <!-- Background Spider Watermark Asset -->
   <img src="./assets/images/watermark.png" alt="" class="spider-watermark" aria-hidden="true" loading="eager"
     decoding="async" />
+<div id="top" aria-hidden="true"></div>
 
   <!-- Global Sticky Header Web Component -->
-  <site-navbar id="home"></site-navbar>
+  <site-navbar></site-navbar>
 
   <!-- Main Hero Stage: Centered on mobile with generous spacing; Left-aligned on Desktop -->
-  <main class="hero-stage-container">
+  <main class="hero-stage-container" id="home">
     <div class="hero-grid">
 
       <!-- Hero Content Column -->
@@ -76,7 +77,8 @@
           <a href="#contact" id="main-cta-btn" class="cta-spider-btn" data-email="abishekrux@gmail.com"
             data-subject="Engagement Inquiry // ARUX.OS" title="Initiate Encrypted Transmission">
             <span class="cta-pulse-beacon"></span>
-            INITIATE COMMS // HIRE &amp; CONSULT
+            <span class="cta-text-mobile">INITIATE COMMS</span>
+            <span class="cta-text-desktop">INITIATE COMMS // HIRE &amp; CONSULT</span>
           </a>
         </div>
       </section>
@@ -120,19 +122,133 @@
   <div class="stage-baseline-dock" role="navigation" aria-label="External Transmissions">
     <div class="dock-links-group">
       <a href="https://www.linkedin.com/in/abishek-devaraja-r/" target="_blank" rel="noopener noreferrer"
-        class="footer-bracket-link" title="LinkedIn Profile">
+        class="nav-resume-btn" title="LinkedIn Profile">
         [ LN / LINKEDIN ]
       </a>
       <a href="https://www.behance.net/abishekdevaraja" target="_blank" rel="noopener noreferrer"
-        class="footer-bracket-link" title="Behance Portfolio">
+        class="nav-resume-btn" title="Behance Portfolio">
         [ BH / BEHANCE ]
       </a>
-      <a href="https://github.com/abishek-r-ux" target="_blank" rel="noopener noreferrer" class="footer-bracket-link"
+      <a href="https://github.com/abishek-r-ux" target="_blank" rel="noopener noreferrer" class="nav-resume-btn"
         title="GitHub Repository">
         [ GH / GITHUB ]
       </a>
     </div>
   </div>
+
+  <section id="capabilities" class="capabilities-section" aria-labelledby="capabilities-title">
+    <div class="capabilities-container">
+
+      <!-- Section Header HUD -->
+      <header class="section-hud-header">
+        <div class="section-hud-badge">[ MODULE // 02: CAPABILITIES MATRIX ]</div>
+        <h2 id="capabilities-title" class="section-title">ARCHITECTURAL DISCIPLINES &amp; EXECUTION</h2>
+        <p class="section-subtitle">
+          Bridging high-density enterprise SaaS architecture with tokenized systems and front-end engineering.
+        </p>
+      </header>
+
+      <!-- 3-Column Domain Grid -->
+      <div class="capabilities-grid">
+
+        <!-- Card 01 -->
+        <article class="liquid-glass-card capability-card">
+          <div class="card-meta-index">[ 01 // ENTERPRISE UX ]</div>
+          <h3 class="capability-heading">Product &amp; SaaS Architecture</h3>
+          <p class="capability-desc">
+            Architecting ergonomic workflows for dense enterprise platforms, inventory ecosystems, and multi-tenant
+            operational tools.
+          </p>
+          <ul class="capability-specs-list" role="list">
+            <li><span class="bracket-bullet">&gt;</span> High-Density Data Grids &amp; Filtering</li>
+            <li><span class="bracket-bullet">&gt;</span> Multi-Role State &amp; Permission Flows</li>
+            <li><span class="bracket-bullet">&gt;</span> Complex Workflow Deconstruction</li>
+            <li><span class="bracket-bullet">&gt;</span> WCAG AA Contrast &amp; Accessibility</li>
+          </ul>
+        </article>
+
+        <!-- Card 02 -->
+        <article class="liquid-glass-card capability-card">
+          <div class="card-meta-index">[ 02 // DESIGN SYSTEMS ]</div>
+          <h3 class="capability-heading">Design Systems &amp; Tokens</h3>
+          <p class="capability-desc">
+            Building mathematical design tokens and variable frameworks that synchronize seamlessly between Figma and
+            production repositories.
+          </p>
+          <ul class="capability-specs-list" role="list">
+            <li><span class="bracket-bullet">&gt;</span> W3C Token Architecture &amp; Modes</li>
+            <li><span class="bracket-bullet">&gt;</span> Figma Variables &amp; Auto-Layout 5.0</li>
+            <li><span class="bracket-bullet">&gt;</span> Strict 8px Spatial Layout Grids</li>
+            <li><span class="bracket-bullet">&gt;</span> Governance &amp; Versioned Releases</li>
+          </ul>
+        </article>
+
+        <!-- Card 03 -->
+        <article class="liquid-glass-card capability-card">
+          <div class="card-meta-index">[ 03 // DESIGN TECHNOLOGY ]</div>
+          <h3 class="capability-heading">Design Technology &amp; Code</h3>
+          <p class="capability-desc">
+            Translating design systems into modular, production-ready front-end components with zero UI drift and high
+            compositor performance.
+          </p>
+          <ul class="capability-specs-list" role="list">
+            <li><span class="bracket-bullet">&gt;</span> Angular &amp; TypeScript Architectures</li>
+            <li><span class="bracket-bullet">&gt;</span> Tailwind CSS &amp; Scalable SCSS</li>
+            <li><span class="bracket-bullet">&gt;</span> Viewport Pacing (100dvh / 100vh)</li>
+            <li><span class="bracket-bullet">&gt;</span> GPU-Layer Hardware Compositing</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- Telemetry Runtime Stack Strip -->
+<div class="liquid-glass-card stack-strip-card">
+  <div class="card-meta-index">
+    [ TELEMETRY // PRODUCTION TOOLCHAIN RUNTIME ]
+  </div>
+  <div class="stack-strip-grid">
+    
+    <!-- Col 1: Systems -->
+    <div class="stack-col">
+      <span class="stack-col-label">
+        <span class="hud-glyph" aria-hidden="true">&#x2B21;</span>
+        [ Design &amp; Systems ]
+      </span>
+      <span class="stack-col-value">Figma, Token Studio, FigJam</span>
+    </div>
+
+    <!-- Col 2: Runtimes -->
+    <div class="stack-col">
+      <span class="stack-col-label">
+        <span class="hud-glyph hud-glyph-blue" aria-hidden="true">&#x26A1;</span>
+        [ Logic &amp; Runtimes ]
+      </span>
+      <span class="stack-col-value">TypeScript, Angular, JavaScript</span>
+    </div>
+
+    <!-- Col 3: Styling -->
+    <div class="stack-col">
+      <span class="stack-col-label">
+        <span class="hud-glyph" aria-hidden="true">&#x25C8;</span>
+        [ Styling &amp; Layering ]
+      </span>
+      <span class="stack-col-value">Tailwind CSS, SCSS, Design Tokens</span>
+    </div>
+
+    <!-- Col 4: Environment -->
+    <div class="stack-col">
+      <span class="stack-col-label">
+        <span class="hud-glyph hud-glyph-blue" aria-hidden="true">&#x2387;</span>
+        [ Engineering Environment ]
+      </span>
+      <span class="stack-col-value">Git, VS Code, cPanel</span>
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </section>
 
   <script src="./app.js"></script>
 </body>
