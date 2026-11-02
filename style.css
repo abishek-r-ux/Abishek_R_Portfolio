@@ -746,6 +746,7 @@ site-navbar {
 .hero-content-col {
   display: flex;
   flex-direction: column;
+  gap: var(--space-lg);
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -795,7 +796,6 @@ site-navbar {
   color: var(--color-global-ash);
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: var(--space-sm);
 }
 
 @media (min-width: 1024px) {
@@ -814,7 +814,6 @@ site-navbar {
   text-transform: uppercase;
   max-width: 576px;
   margin-top: 0;
-  margin-bottom: var(--space-md);
 }
 
 @media (min-width: 1024px) {
@@ -841,7 +840,6 @@ site-navbar {
   color: var(--color-text-primary);
   max-width: 672px;
   margin-top: 0;
-  margin-bottom: var(--space-xl);
 }
 
 @media (min-width: 640px) {
