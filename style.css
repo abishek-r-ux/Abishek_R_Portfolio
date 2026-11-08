@@ -1175,7 +1175,7 @@ site-navbar {
 }
 
 .diag-feed-container {
-display: flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -1578,6 +1578,7 @@ display: flex;
 }
 
 @media (min-width: 1024px) {
+
   /* Subtle hairline dividers between columns */
   .hud-discipline-col:not(:last-child)::after {
     content: "";
@@ -1586,13 +1587,11 @@ display: flex;
     top: 0;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.1) 20%,
-      rgba(255, 255, 255, 0.1) 80%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent 100%);
   }
 }
 
@@ -1633,196 +1632,563 @@ display: flex;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
     padding-top: var(--space-xl);
-    padding-bottom: var(--space-xl); 
+    padding-bottom: var(--space-xl);
   }
 }
 
 /* ==========================================================================
-   MODULE 03 // CASE STUDIES & WORK SPEC
+   MODULE 03 // CLEAN VISIBLE STREAM SPEC
    ========================================================================== */
-.case-studies-section {
-  width: 100%;
+.case-minimal-rail {
   position: relative;
-  z-index: 10;
-  padding-top: var(--space-huge);
-  padding-bottom: var(--space-xxl);
-  scroll-margin-top: var(--space-xxl);
-}
-
-.case-studies-container {
   width: 100%;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxl);
+  box-sizing: border-box;
+  z-index: 10;
+  padding-top: var(--space-huge);
+  scroll-margin-top: 80px;
+}
+
+/* Header Container: Perfectly matches Capabilities grid */
+.case-minimal-header {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-xl) var(--space-lg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+  opacity: 1 !important; /* Prevents opacity: 0 lock */
+  transform: none !important;
 }
 
 @media (min-width: 640px) {
-  .case-studies-container {
+  .case-minimal-header {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
-.case-studies-grid {
+.case-header-meta {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
-  width: 100%;
-}
-
-.case-study-card {
-  padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-@media (min-width: 1024px) {
-  .case-study-card {
-    padding: 36px var(--space-xl);
-  }
-}
-
-.case-card-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: var(--space-md);
-}
-
-.case-meta-tag {
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-caption);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--color-brand-primary);
-}
-
-.case-status-badge {
-  display: inline-flex;
-  align-items: center;
   gap: var(--space-xs);
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-caption);
-  letter-spacing: 0.08em;
-  color: var(--color-text-secondary);
+  text-align: left;
 }
 
-.case-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.case-study-title {
-  font-family: var(--font-family-display);
-  font-size: var(--text-size-mobile-h2);
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: var(--tracking-h2-compressed);
+/* Identical typography to CORE DISCIPLINES */
+.case-minimal-header .section-title {
+  margin: 0;
   color: var(--color-global-ash);
-  margin: 0;
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
-@media (min-width: 768px) {
-  .case-study-title {
-    font-size: var(--text-size-mobile-h2);
-  }
-}
-
-.case-study-description {
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-body-main);
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-  margin: 0;
-  max-width: 950px;
-}
-
-.case-details-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
-  margin-top: var(--space-sm);
-}
-
-@media (min-width: 1024px) {
-  .case-details-split {
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: var(--space-xl);
-  }
-}
-
-.case-highlights-box,
-.case-telemetry-box {
-  background: rgba(10, 10, 10, 0.5);
-  border: 1px solid var(--color-border-muted);
-  border-radius: var(--space-sm);
-  padding: var(--space-md);
+/* Nav Controls Alignment */
+.case-minimal-nav {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+  align-items: center;
+  gap: var(--space-md);
+  padding-bottom: 6px;
 }
 
-.case-box-label {
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-caption);
+.case-stream-counter {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--color-brand-primary);
 }
 
-.case-specs-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.case-nav-btns {
   display: flex;
-  flex-direction: column;
   gap: 6px;
 }
 
-.case-specs-list li {
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-caption);
-  color: var(--color-text-primary);
+.case-nav-btn {
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-global-ash);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.case-nav-btn:hover {
+  background: rgba(225, 29, 46, 0.2);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+/* 100% Full-Bleed Track */
+.comic-rail-track {
+  width: 100%;
+  height: 520px;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comic-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Edge-to-Edge Cards */
+.case-flat-panel {
+flex: 0 0 100vw;
+  height: 100%;
+  min-height: calc(100vh - 180px);
+  scroll-snap-align: start;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #09090b;
+}
+
+@media (min-width: 1024px) {
+  .case-flat-panel {
+    flex: 0 0 33.333vw;
+  }
+}
+
+/* In style.css */
+.panel-bg {
+position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  z-index: 1 !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+.case-flat-panel:hover .panel-bg {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+
+
+/* 4. Text Content (Sits above the gradient: z-index 3) */
+.panel-bottom-lockup {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 32px 26px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   MODULE 03 // SPIDER-MAN HUD CASE STUDIES SPEC
+   ========================================================================== */
+.case-minimal-rail {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 10;
+  padding-top: var(--space-huge);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  scroll-margin-top: 80px;
+}
+
+.case-minimal-header {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-xl) var(--space-lg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .case-minimal-header {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.case-minimal-header .section-title {
+  margin: 0;
+  color: var(--color-global-ash);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.case-minimal-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-md);
+  padding-bottom: 6px;
 }
 
-.case-tech-pills {
+.case-stream-counter {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-primary);
+}
+
+.case-nav-btns {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: 6px;
 }
 
-.tech-pill {
-  font-family: var(--font-family-body);
-  font-size: var(--text-size-caption);
+.case-nav-btn {
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-global-ash);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 4px 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.case-nav-btn:hover {
+  background: rgba(225, 29, 46, 0.2);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+/* Horizontal Track */
+.comic-rail-track {
+  width: 100%;
+  height: 520px;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comic-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Spidey Panel (2 Cards Mobile / 3 Cards Tab / 4+ Cards Desktop) */
+.spidey-hud-card {
+  position: relative !important;
+  flex: 0 0 50vw !important; /* Mobile: 2 cards */
+  height: 100% !important;
+  scroll-snap-align: start;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #060608;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .spidey-hud-card {
+    flex: 0 0 33.333vw !important; /* Tablet: 3 cards */
+  }
+}
+
+@media (min-width: 1024px) {
+  .spidey-hud-card {
+    flex: 0 0 22vw !important; /* Desktop Web: 4+ cards */
+    min-width: 280px;
+  }
+}
+
+/* Layer 1: Background Image */
+.panel-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  z-index: 1 !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+.spidey-hud-card:hover .panel-bg {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+/* Layer 2: 100% Full-Card Spider-Man Gradient & Ambient Flares */
+.spidey-vignette {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+.panel-lens-flare {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  opacity: 0.65;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease;
+}
+
+.spidey-hud-card:hover .panel-lens-flare {
+  opacity: 1;
+}
+
+/* --- Spider-Man Multi-Suit Color Palettes (Cycles per card) --- */
+
+/* ==========================================================================
+   SPIDER-MAN MULTI-SUIT TOP-TO-BOTTOM COLOR GRADIENTS
+   ========================================================================== */
+
+/* Theme 1: Classic Spider-Red (Crimson Top -> Deep Carbon Bottom) */
+.spidey-theme-1 .spidey-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(225, 29, 46, 0.75) 0%,
+    rgba(140, 16, 26, 0.55) 30%,
+    rgba(25, 6, 10, 0.85) 65%,
+    rgba(8, 6, 8, 0.98) 100%
+  ) !important;
+}
+.spidey-theme-1 .panel-lens-flare {
+  background: radial-gradient(circle at 50% 0%, rgba(225, 29, 46, 0.45) 0%, transparent 70%);
+}
+.spidey-theme-1 .spidey-index-pill,
+.spidey-theme-1:hover .spidey-arrow-shield {
+  background: #E11D2E !important;
+  border-color: #E11D2E !important;
+  box-shadow: 0 0 14px rgba(225, 29, 46, 0.6);
+}
+.spidey-theme-1:hover {
+  border-right-color: rgba(225, 29, 46, 0.7) !important;
+}
+
+/* Theme 2: Spider-Byte (Cyan Top -> Deep Cyber Navy Bottom) */
+.spidey-theme-2 .spidey-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 182, 212, 0.75) 0%,
+    rgba(8, 120, 144, 0.55) 30%,
+    rgba(4, 28, 38, 0.85) 65%,
+    rgba(5, 10, 14, 0.98) 100%
+  ) !important;
+}
+.spidey-theme-2 .panel-lens-flare {
+  background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.45) 0%, transparent 70%);
+}
+.spidey-theme-2 .spidey-index-pill,
+.spidey-theme-2:hover .spidey-arrow-shield {
+  background: #06B6D4 !important;
+  border-color: #06B6D4 !important;
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.6);
+}
+.spidey-theme-2:hover {
+  border-right-color: rgba(6, 182, 212, 0.7) !important;
+}
+
+/* Theme 3: Symbiote (Neon Violet Top -> Midnight Abyss Bottom) */
+.spidey-theme-3 .spidey-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(168, 85, 247, 0.75) 0%,
+    rgba(110, 40, 180, 0.55) 30%,
+    rgba(22, 8, 36, 0.85) 65%,
+    rgba(8, 5, 12, 0.98) 100%
+  ) !important;
+}
+.spidey-theme-3 .panel-lens-flare {
+  background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
+}
+.spidey-theme-3 .spidey-index-pill,
+.spidey-theme-3:hover .spidey-arrow-shield {
+  background: #A855F7 !important;
+  border-color: #A855F7 !important;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
+}
+.spidey-theme-3:hover {
+  border-right-color: rgba(168, 85, 247, 0.7) !important;
+}
+
+/* Theme 4: Iron Spider (Amber Gold Top -> Obsidian Crimson Bottom) */
+.spidey-theme-4 .spidey-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 158, 11, 0.75) 0%,
+    rgba(180, 90, 10, 0.55) 30%,
+    rgba(34, 12, 8, 0.85) 65%,
+    rgba(10, 6, 4, 0.98) 100%
+  ) !important;
+}
+.spidey-theme-4 .panel-lens-flare {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.45) 0%, transparent 70%);
+}
+.spidey-theme-4 .spidey-index-pill,
+.spidey-theme-4:hover .spidey-arrow-shield {
+  background: #F59E0B !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.6);
+}
+.spidey-theme-4:hover {
+  border-right-color: rgba(245, 158, 11, 0.7) !important;
+}
+
+/* Theme 5: Spider-Man 2099 (Electric Rose Top -> Night Sky Blue Bottom) */
+.spidey-theme-5 .spidey-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 63, 94, 0.75) 0%,
+    rgba(160, 20, 60, 0.55) 30%,
+    rgba(16, 12, 34, 0.85) 65%,
+    rgba(6, 6, 14, 0.98) 100%
+  ) !important;
+}
+.spidey-theme-5 .panel-lens-flare {
+  background: radial-gradient(circle at 50% 0%, rgba(244, 63, 94, 0.45) 0%, transparent 70%);
+}
+.spidey-theme-5 .spidey-index-pill,
+.spidey-theme-5:hover .spidey-arrow-shield {
+  background: #F43F5E !important;
+  border-color: #F43F5E !important;
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.6);
+}
+.spidey-theme-5:hover {
+  border-right-color: rgba(244, 63, 94, 0.7) !important;
+}
+
+/* Layer 3: Bottom Identity Lockup */
+.spidey-hud-card .panel-bottom-lockup {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 24px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 1024px) {
+  .spidey-hud-card .panel-bottom-lockup {
+    padding: 28px 20px !important;
+  }
+}
+
+.panel-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spidey-index-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  padding: 2px 7px;
   border-radius: 2px;
 }
 
-.case-card-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-md);
-  padding-top: var(--space-sm);
+.spidey-category-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.78);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.case-action-btn {
-  padding: 10px 18px;
-  font-size: var(--text-size-caption);
+.panel-name-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spidey-hud-card .panel-name {
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 1440px) {
+  .spidey-hud-card .panel-name {
+    font-size: 20px;
+  }
+}
+
+.spidey-arrow-shield {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(18, 18, 24, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel-arrow {
+  font-size: 15px;
+  line-height: 1;
+  color: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spidey-hud-card:hover .panel-arrow {
+  transform: translate(2px, -2px);
 }

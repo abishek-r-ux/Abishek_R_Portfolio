@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -------------------------------------------------------------------------
-       2. TELEMETRY FEED RENDER (Direct 4-Row Architecture)
-       ------------------------------------------------------------------------- */
+     2. TELEMETRY FEED RENDER (Direct 4-Row Architecture)
+     ------------------------------------------------------------------------- */
   function renderDiagnostics() {
     const container = document.getElementById('diagnostics-feed');
     if (!container) return;
@@ -359,4 +359,108 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial runs
   setActiveNavLink('home');
   renderDiagnostics();
-});
+
+  // Initialize Dynamic Case Study Rail
+  initDynamicCaseStudies();
+}); // End of DOMContentLoaded
+
+/* ==========================================================================
+   MODULE 03 // DYNAMIC CASE STUDIES RENDERER & HORIZONTAL RAIL
+   ========================================================================== */
+function initDynamicCaseStudies() {
+  const track = document.getElementById('comic-rail-track');
+  const prevBtn = document.getElementById('comic-prev-btn');
+  const nextBtn = document.getElementById('comic-next-btn');
+  const counterEl = document.getElementById('comic-counter');
+
+  if (!track || typeof CASE_STUDIES === 'undefined' || CASE_STUDIES.length === 0) return;
+
+  const totalCards = CASE_STUDIES.length;
+
+  // Render cards dynamically (Top telemetry completely removed, theme cycling enabled)
+  track.innerHTML = CASE_STUDIES.map((item, idx) => `
+    <a href="${item.targetUrl}" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="case-flat-panel spidey-hud-card spidey-theme-${(idx % 5) + 1}"
+       data-index="${idx}"
+       id="${item.id}"
+       aria-label="${item.title}">
+      
+      <!-- Full-bleed Project Background Image -->
+      <div class="panel-bg" style="background-image: url('${item.coverImage}');"></div>
+      
+      <!-- Spider-Man Full-Card Ambient Gradient & Flare -->
+      <div class="panel-vignette spidey-vignette"></div>
+      <div class="panel-lens-flare"></div>
+
+      <!-- Prominent Bottom Identity Lockup -->
+      <div class="panel-bottom-lockup">
+        <div class="panel-badge-row">
+          <span class="spidey-index-pill">0${idx + 1}</span>
+          <span class="spidey-category-tag">${item.category}</span>
+        </div>
+
+        <div class="panel-name-row">
+          <h3 class="panel-name">${item.title}</h3>
+          <div class="spidey-arrow-shield" aria-hidden="true">
+            <span class="panel-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  const cards = Array.from(track.querySelectorAll('.spidey-hud-card'));
+  if (cards.length === 0) return;
+
+  function updateActiveCard() {
+    const scrollLeft = track.scrollLeft;
+    let activeIndex = 0;
+    let minDiff = Infinity;
+
+    cards.forEach((card, idx) => {
+      const cardLeft = card.offsetLeft - track.offsetLeft;
+      const diff = Math.abs(cardLeft - scrollLeft);
+      if (diff < minDiff) {
+        minDiff = diff;
+        activeIndex = idx;
+      }
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      const cardWidth = cards[0].offsetWidth;
+      track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      const cardWidth = cards[0].offsetWidth;
+      track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    };
+  }
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    const section = document.getElementById('casestudies');
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (inView) {
+      const cardWidth = cards[0].offsetWidth;
+      if (e.key === 'ArrowRight') track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      else if (e.key === 'ArrowLeft') track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+  });
+
+  track.addEventListener('scroll', updateActiveCard, { passive: true });
+  updateActiveCard();
+}
