@@ -3,8 +3,9 @@
  * Features:
  * - Left: Monogram logo (Mobile) / Logo + "ARUX.OS" (Desktop)
  * - Center: Responsive navigation links island (Desktop)
- * - Right: Technical Resume button + Upright "A" to "X" morphing toggle
+ * - Right: Technical Resume button + 2-Line HUD morphing toggle
  * - Border: Autonomous bi-color micro-spider patrol along bottom border
+ * - Touch: Zero-latency drawer toggle with outside-tap & ESC dismissal
  */
 
 class SiteNavbar extends HTMLElement {
@@ -14,7 +15,7 @@ class SiteNavbar extends HTMLElement {
         <nav class="header-nav-container" aria-label="Main Navigation">
           <!-- 1. Brand Group (Left) -->
           <div class="brand-group">
-            <a href="#home" class="brand-link" title="ARUX.OS">
+            <a href="#home" class="brand-link" title="ARUX.OS // Home">
               <img src="./assets/icons/master_logo.svg" alt="ARUX.OS Logo" class="header-logo" />
               <span class="brand-title">ARUX.OS</span>
             </a>
@@ -35,10 +36,10 @@ class SiteNavbar extends HTMLElement {
             </a>
 
             <!-- Mobile Hamburger Toggle Button: Clean 2-Line HUD Morpher -->
-<button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-  <span class="hamburger-bar bar-1"></span>
-  <span class="hamburger-bar bar-2"></span>
-</button>
+            <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+              <span class="hamburger-bar bar-1"></span>
+              <span class="hamburger-bar bar-2"></span>
+            </button>
           </div>
         </nav>
 
@@ -46,15 +47,11 @@ class SiteNavbar extends HTMLElement {
         <div class="nav-spider-track" aria-hidden="true">
           <div class="nav-spider-patrol">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Spider Head / Cephalothorax (Primary Red) -->
               <circle cx="12" cy="7.5" r="1.5" class="spider-head"></circle>
-              <!-- Spider Abdomen (Secondary Blue) -->
               <ellipse cx="12" cy="12" rx="2.5" ry="3.5" class="spider-body"></ellipse>
-              <!-- Left Legs -->
               <path d="M10 10 C6 7, 4 9, 3 8" class="leg leg-l1 leg-red"></path>
               <path d="M9.5 12 C5 11, 3 13, 2 15" class="leg leg-l2 leg-blue"></path>
               <path d="M10 14 C6 16, 4 18, 5 21" class="leg leg-l3 leg-red"></path>
-              <!-- Right Legs -->
               <path d="M14 10 C18 7, 20 9, 21 8" class="leg leg-r1 leg-blue"></path>
               <path d="M14.5 12 C19 11, 21 13, 22 15" class="leg leg-r2 leg-red"></path>
               <path d="M14 14 C18 16, 20 18, 19 21" class="leg leg-r3 leg-blue"></path>
@@ -81,7 +78,14 @@ class SiteNavbar extends HTMLElement {
 
     if (!navToggle || !mobileNavDrawer) return;
 
-    // Toggle "A" to "X" and slide drawer
+    const closeDrawer = () => {
+      mobileNavDrawer.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      mobileNavDrawer.setAttribute('aria-hidden', 'true');
+    };
+
+    // 1. Toggle button handler
     navToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navToggle.classList.toggle('open');
@@ -90,24 +94,23 @@ class SiteNavbar extends HTMLElement {
       mobileNavDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     });
 
-    // Close when clicking any nav link inside drawer
-    const mobileLinks = mobileNavDrawer.querySelectorAll('a');
+    // 2. Close when tapping any link inside drawer
+    const mobileLinks = mobileNavDrawer.querySelectorAll('.mobile-nav-link');
     mobileLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileNavDrawer.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        mobileNavDrawer.setAttribute('aria-hidden', 'true');
-      });
+      link.addEventListener('click', closeDrawer);
     });
 
-    // Close when clicking outside
+    // 3. Dismiss on outside tap
     document.addEventListener('click', (e) => {
       if (!this.contains(e.target)) {
-        mobileNavDrawer.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        mobileNavDrawer.setAttribute('aria-hidden', 'true');
+        closeDrawer();
+      }
+    });
+
+    // 4. Accessibility: Dismiss on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNavDrawer.classList.contains('open')) {
+        closeDrawer();
       }
     });
   }

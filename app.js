@@ -8,7 +8,7 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// 2. Clear lingering hashes like '#capabilities' on fresh page load
+// 2. Clear lingering hashes like '#capabilities' or '#casestudies' on fresh page load
 if (window.location.hash) {
   window.history.replaceState(null, '', window.location.pathname);
 }
@@ -18,48 +18,36 @@ window.scrollTo(0, 0);
 
 document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------------------------------------------------
-     1. TELEMETRY & SYSTEM CONSTANTS
+     1. STREAMLINED TELEMETRY RECORDS (3 High-Signal Rows)
      ------------------------------------------------------------------------- */
   const DIAGNOSTIC_RECORDS = [
     {
       id: 'row-1',
       category: 'SYSTEMS',
-      label: 'Role & Engagement:',
-      value: 'Senior Product Designer (FTE) & Systems Consultant',
+      label: 'ENGAGEMENT MODEL:',
+      value: 'Full-Time Lead (FTE) & Strategic Systems Consulting',
       meta: null,
       isStatus: false
     },
     {
       id: 'row-2',
       category: 'SYSTEMS',
-      label: 'Core Focus:',
-      value: 'Enterprise ERP Platforms, Dense UI & Scalable Systems',
+      label: 'CORE EXPERTISE:',
+      value: 'High-Density Platforms, Enterprise SaaS & UI Architecture',
       meta: null,
       isStatus: false
     },
     {
       id: 'row-3',
-      category: 'STACK',
-      label: 'Workflow Engine:',
-      value: 'Figma Variables ➔ Design Tokens ➔ Modular Code',
-      meta: null,
-      isStatus: false
+      label: 'PRODUCTION STACK:',
+      value: 'Angular · TypeScript · Tailwind CSS · W3C Tokens',
+      isStatusRow: false
     },
     {
       id: 'row-4',
-      category: 'STACK',
-      label: 'Design Tokens:',
-      value: 'W3C Compliant Spec',
-      meta: '[ PARSING: VALID // SYNCED ]',
-      isStatus: false
-    },
-    {
-      id: 'row-5',
-      category: 'STACK',
-      label: 'Core Codebase:',
-      value: 'Angular / TypeScript / Tailwind CSS / SCSS',
-      meta: null,
-      isStatus: true
+      label: 'SYSTEM RUNTIME:',
+      value: 'NODE_01 // CONTRACT & FTE READY',
+      isStatusRow: true
     }
   ];
 
@@ -81,33 +69,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -------------------------------------------------------------------------
-     2. TELEMETRY FEED RENDER & TAB CONTROLLER
-     ------------------------------------------------------------------------- */
-  function renderDiagnostics(slideAnimationClass = '') {
+       2. TELEMETRY FEED RENDER (Direct 4-Row Architecture)
+       ------------------------------------------------------------------------- */
+  function renderDiagnostics() {
     const container = document.getElementById('diagnostics-feed');
     if (!container) return;
 
-    const isDesktop = window.innerWidth >= BREAKPOINT_DESKTOP;
-    const visibleRecords = isDesktop
-      ? DIAGNOSTIC_RECORDS
-      : DIAGNOSTIC_RECORDS.filter(record => record.category === activeTab);
-
     container.className = 'diag-feed-container';
-    if (!isDesktop && slideAnimationClass) {
-      container.classList.add(slideAnimationClass);
-    }
-
-    container.innerHTML = visibleRecords
+    container.innerHTML = DIAGNOSTIC_RECORDS
       .map(item => {
-        if (item.isStatus) {
+        if (item.isStatusRow) {
           return `
-            <div class="diag-row" id="${item.id}">
+            <div class="diag-row diag-row-status" id="${item.id}">
+              <div class="diag-label">${item.label}</div>
               <div class="diag-status-row">
-                <div>
-                  <div class="diag-label">${item.label}</div>
-                  <div class="diag-value">${item.value}</div>
-                </div>
-                <div class="diag-status-beacon" title="Node Online & Synced">
+                <span class="diag-runtime-node">${item.value}</span>
+                <div class="diag-status-beacon" title="System Online & Ready">
                   <span class="status-beacon-dot"></span>
                   SYS_ONLINE
                 </div>
@@ -120,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="diag-row" id="${item.id}">
             <div class="diag-label">${item.label}</div>
             <div class="diag-value">${item.value}</div>
-            ${item.meta ? `<div class="diag-meta">${item.meta}</div>` : ''}
           </div>
         `;
       })
@@ -166,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   });
 
-/* -------------------------------------------------------------------------
+  /* -------------------------------------------------------------------------
      3. DUAL-HELIX DNA SPIRAL (Full Top-to-Bottom Vertical Descent Engine)
      ------------------------------------------------------------------------- */
   let currentScrollY = window.scrollY || 0;
@@ -178,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   function updateDNASpiralGlow() {
-    // 1. Smooth interpolation
     currentScrollY += (targetScrollY - currentScrollY) * lerpFactor;
 
     if (glowBlue && glowRed) {
@@ -186,38 +161,34 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       const scrollProgress = Math.min(Math.max(currentScrollY / maxScroll, 0), 1);
 
-      // 2. Continuous rotation: 3 full 360-degree helical revolutions from top to bottom
+      // Continuous 3 full helical rotations from page top to bottom
       const totalRevolutions = 3.0;
       const theta = scrollProgress * (Math.PI * 2 * totalRevolutions);
 
-      // 3. Wide horizontal orbit amplitude
       const amplitudeX = isMobile
         ? window.innerWidth * 0.38
         : Math.min(window.innerWidth * 0.32, 420);
 
-      // 4. Vertical Descent: Orbs travel all the way from the top header to the footer baseline
-      // Starts at 10vh (top hero) and sweeps completely down to 80vh (bottom module)
+      // Starts near header (10vh) and descends across sections down to 80vh
       const startY = window.innerHeight * 0.10;
       const endY = window.innerHeight * 0.80;
       const baseVerticalY = startY + (scrollProgress * (endY - startY));
 
-      // Optional slight ambient idle drift when scrolling pauses
       const time = performance.now() * 0.001;
       const idleWobble = Math.sin(time * 0.8) * 12;
 
-      // --- STRAND 1: Royal Blue Orb ---
+      // STRAND 1: Royal Blue Orb
       const blueX = Math.cos(theta) * amplitudeX;
-      // Anti-phase vertical wave gives the circular twist in 3D projection
       const blueY = baseVerticalY + (Math.sin(theta) * (isMobile ? 40 : 65)) + idleWobble;
       const blueDepth = Math.sin(theta); // -1 (back) to +1 (front)
-      const blueScale = 0.85 + ((blueDepth + 1) * 0.22); // 0.85 to 1.29
-      const blueOpacity = 0.40 + ((blueDepth + 1) * 0.30); // 0.40 to 1.00
+      const blueScale = 0.85 + ((blueDepth + 1) * 0.22);
+      const blueOpacity = 0.40 + ((blueDepth + 1) * 0.30);
 
       glowBlue.style.transform = `translate3d(calc(-50% + ${blueX.toFixed(2)}px), ${blueY.toFixed(2)}px, 0) scale(${blueScale.toFixed(3)})`;
       glowBlue.style.opacity = blueOpacity.toFixed(3);
       glowBlue.style.zIndex = blueDepth > 0 ? "2" : "0";
 
-      // --- STRAND 2: Crimson Red Orb (Opposing 180° Strand: theta + PI) ---
+      // STRAND 2: Crimson Red Orb (Opposing 180° phase: theta + PI)
       const redX = Math.cos(theta + Math.PI) * amplitudeX;
       const redY = baseVerticalY + (Math.sin(theta + Math.PI) * (isMobile ? 40 : 65)) - idleWobble;
       const redDepth = Math.sin(theta + Math.PI);
@@ -232,11 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(updateDNASpiralGlow);
   }
 
-  // Start continuous descent loop
   requestAnimationFrame(updateDNASpiralGlow);
 
   /* -------------------------------------------------------------------------
-     4. 3D OPTICAL GLASS TILT (Hero Card + Capabilities Cards)
+     4. 3D OPTICAL GLASS TILT (Disabled on Touch Devices)
      ------------------------------------------------------------------------- */
   function attachTiltEffect(el, intensity = 3.2) {
     if (!el || window.innerWidth < BREAKPOINT_DESKTOP || isTouchDevice()) return;
@@ -262,8 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
     attachTiltEffect(heroCard, 3.2);
   }
 
-  document.querySelectorAll('.capability-card').forEach(card => {
-    attachTiltEffect(card, 2.5);
+  document.querySelectorAll('.capability-card, .case-study-card').forEach(card => {
+    attachTiltEffect(card, 2.0);
   });
 
   /* -------------------------------------------------------------------------
@@ -277,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const subject = ctaBtn.getAttribute('data-subject') || 'Engagement Inquiry // ARUX.OS';
       const encodedSubject = encodeURIComponent(subject);
 
-      // 1. Copy email address to clipboard
+      // 1. Clipboard copy fallback
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(email);
       } else {
@@ -289,15 +259,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(tempInput);
       }
 
-      // 2. HUD Visual Confirmation (Declared prior to assignment to avoid ReferenceError)
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      // 2. HUD visual feedback
+      const isMobile = isTouchDevice();
       const feedbackLabel = isMobile ? `COPIED: ${email}` : `COPIED: ${email} // OPENING...`;
       const originalHTML = ctaBtn.innerHTML;
 
       ctaBtn.innerHTML = `<span class="cta-pulse-beacon"></span>${feedbackLabel}`;
       ctaBtn.style.backgroundColor = 'var(--color-brand-secondary, #1D4ED8)';
 
-      // 3. Platform Routing
+      // 3. Routing
       setTimeout(() => {
         if (isMobile) {
           window.location.href = `mailto:${email}?subject=${encodedSubject}`;
@@ -318,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
      6. HUD SCROLL REVEAL (Intersection Observer)
      ------------------------------------------------------------------------- */
   const revealElements = document.querySelectorAll(
-    '.section-hud-header, .capability-card, .stack-strip-card'
+    '.section-hud-header, .capabilities-hud-river, .case-study-card'
   );
 
   if (revealElements.length > 0) {
@@ -332,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      threshold: 0.12,
+      threshold: 0.08,
       rootMargin: '0px 0px -40px 0px'
     });
 
@@ -342,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------------------------------------------------
      7. SCROLLSPY: DYNAMIC ACTIVE NAVBAR LINK CONTROLLER
      ------------------------------------------------------------------------- */
-  const sectionIds = ['home', 'capabilities'];
+  const sectionIds = ['home', 'capabilities', 'casestudies'];
   const sections = sectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -373,20 +343,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    rootMargin: '-10% 0px -70% 0px',
+    rootMargin: '-20% 0px -60% 0px',
     threshold: 0
   });
 
   sections.forEach(sec => scrollSpyObserver.observe(sec));
 
-  // Snap back to home when user reaches top
+  // Snap back to home when user reaches the very top
   window.addEventListener('scroll', () => {
     if (window.scrollY < 80) {
       setActiveNavLink('home');
     }
   }, { passive: true });
 
-  // Initializations
+  // Initial runs
   setActiveNavLink('home');
   renderDiagnostics();
 });
