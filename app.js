@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
      6. HUD SCROLL REVEAL (Intersection Observer)
      ------------------------------------------------------------------------- */
   const revealElements = document.querySelectorAll(
-    '.section-hud-header, .capabilities-hud-river, .case-study-card'
+    '.section-hud-header, .capabilities-hud-river, .case-study-card, .dossier-card-bio, .dossier-card-network'
   );
 
   if (revealElements.length > 0) {
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------------------------------------------------
      7. SCROLLSPY: DYNAMIC ACTIVE NAVBAR LINK CONTROLLER
      ------------------------------------------------------------------------- */
-  const sectionIds = ['home', 'capabilities', 'casestudies'];
+  const sectionIds = ['home', 'capabilities', 'casestudies', 'about'];
   const sections = sectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -464,3 +464,4 @@ function initDynamicCaseStudies() {
   track.addEventListener('scroll', updateActiveCard, { passive: true });
   updateActiveCard();
 }
+

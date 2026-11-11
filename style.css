@@ -876,6 +876,7 @@ site-navbar {
 .cta-spider-btn {
   white-space: nowrap;
   display: inline-flex;
+  gap: var(--space-sm);
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg,
@@ -1048,7 +1049,7 @@ site-navbar {
 }
 
 .discipline-meta {
-  font-family: var(--font-family-body, monospace);
+  font-family: var(--font-family-body, );
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1057,7 +1058,7 @@ site-navbar {
 
 .discipline-title {
   font-family: var(--font-family-display);
-  font-size: 20px;
+  font-size: var(--text-size-mobile-h2);
   font-weight: 800;
   color: var(--color-global-ash);
   letter-spacing: -0.02em;
@@ -1066,14 +1067,14 @@ site-navbar {
 
 .discipline-text {
   font-family: var(--font-family-body);
-  font-size: 14.5px;
+  font-size: var(--text-size-caption);
   line-height: 1.6;
   color: #a3a3a3;
   margin: 0;
 }
 
 .discipline-tags {
-  font-family: var(--font-family-body, monospace);
+  font-family: var(--font-family-body, );
   font-size: 11px;
   color: var(--color-text-secondary);
   letter-spacing: 0.06em;
@@ -1259,6 +1260,10 @@ site-navbar {
   background: rgba(225, 29, 46, 0.08);
   border: 1px solid rgba(225, 29, 46, 0.28);
   border-radius: var(--space-xs);
+  padding-top: var(--space-xs);
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+  padding-bottom: var(--space-xs);
 }
 
 .slide-from-right {
@@ -1583,7 +1588,7 @@ site-navbar {
   .hud-discipline-col:not(:last-child)::after {
     content: "";
     position: absolute;
-    right: -24px;
+    right: var(--space-lg-neg);
     top: 0;
     bottom: 0;
     width: 1px;
@@ -1660,7 +1665,8 @@ site-navbar {
   align-items: flex-end;
   justify-content: space-between;
   box-sizing: border-box;
-  opacity: 1 !important; /* Prevents opacity: 0 lock */
+  opacity: 1 !important;
+  /* Prevents opacity: 0 lock */
   transform: none !important;
 }
 
@@ -1695,7 +1701,7 @@ site-navbar {
 }
 
 .case-stream-counter {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1711,7 +1717,7 @@ site-navbar {
   background: rgba(18, 18, 24, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-global-ash);
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 11px;
   padding: 6px 12px;
   cursor: pointer;
@@ -1747,7 +1753,7 @@ site-navbar {
 
 /* Edge-to-Edge Cards */
 .case-flat-panel {
-flex: 0 0 100vw;
+  flex: 0 0 100vw;
   height: 100%;
   min-height: calc(100vh - 180px);
   scroll-snap-align: start;
@@ -1772,7 +1778,7 @@ flex: 0 0 100vw;
 
 /* In style.css */
 .panel-bg {
-position: absolute !important;
+  position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
@@ -1851,7 +1857,7 @@ position: absolute !important;
 }
 
 .case-stream-counter {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1867,7 +1873,7 @@ position: absolute !important;
   background: rgba(18, 18, 24, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-global-ash);
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 11px;
   padding: 6px 12px;
   cursor: pointer;
@@ -1904,7 +1910,8 @@ position: absolute !important;
 /* Individual Spidey Panel (2 Cards Mobile / 3 Cards Tab / 4+ Cards Desktop) */
 .spidey-hud-card {
   position: relative !important;
-  flex: 0 0 50vw !important; /* Mobile: 2 cards */
+  flex: 0 0 50vw !important;
+  /* Mobile: 2 cards */
   height: 100% !important;
   scroll-snap-align: start;
   display: flex !important;
@@ -1922,13 +1929,15 @@ position: absolute !important;
 
 @media (min-width: 640px) {
   .spidey-hud-card {
-    flex: 0 0 33.333vw !important; /* Tablet: 3 cards */
+    flex: 0 0 33.333vw !important;
+    /* Tablet: 3 cards */
   }
 }
 
 @media (min-width: 1024px) {
   .spidey-hud-card {
-    flex: 0 0 22vw !important; /* Desktop Web: 4+ cards */
+    flex: 0 0 22vw !important;
+    /* Desktop Web: 4+ cards */
     min-width: 280px;
   }
 }
@@ -1984,115 +1993,120 @@ position: absolute !important;
 
 /* Theme 1: Classic Spider-Red (Crimson Top -> Deep Carbon Bottom) */
 .spidey-theme-1 .spidey-vignette {
-  background: linear-gradient(
-    180deg,
-    rgba(225, 29, 46, 0.75) 0%,
-    rgba(140, 16, 26, 0.55) 30%,
-    rgba(25, 6, 10, 0.85) 65%,
-    rgba(8, 6, 8, 0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(225, 29, 46, 0.75) 0%,
+      rgba(140, 16, 26, 0.55) 30%,
+      rgba(25, 6, 10, 0.85) 65%,
+      rgba(8, 6, 8, 0.98) 100%) !important;
 }
+
 .spidey-theme-1 .panel-lens-flare {
   background: radial-gradient(circle at 50% 0%, rgba(225, 29, 46, 0.45) 0%, transparent 70%);
 }
+
 .spidey-theme-1 .spidey-index-pill,
 .spidey-theme-1:hover .spidey-arrow-shield {
   background: #E11D2E !important;
   border-color: #E11D2E !important;
   box-shadow: 0 0 14px rgba(225, 29, 46, 0.6);
 }
+
 .spidey-theme-1:hover {
   border-right-color: rgba(225, 29, 46, 0.7) !important;
 }
 
 /* Theme 2: Spider-Byte (Cyan Top -> Deep Cyber Navy Bottom) */
 .spidey-theme-2 .spidey-vignette {
-  background: linear-gradient(
-    180deg,
-    rgba(6, 182, 212, 0.75) 0%,
-    rgba(8, 120, 144, 0.55) 30%,
-    rgba(4, 28, 38, 0.85) 65%,
-    rgba(5, 10, 14, 0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(6, 182, 212, 0.75) 0%,
+      rgba(8, 120, 144, 0.55) 30%,
+      rgba(4, 28, 38, 0.85) 65%,
+      rgba(5, 10, 14, 0.98) 100%) !important;
 }
+
 .spidey-theme-2 .panel-lens-flare {
   background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.45) 0%, transparent 70%);
 }
+
 .spidey-theme-2 .spidey-index-pill,
 .spidey-theme-2:hover .spidey-arrow-shield {
   background: #06B6D4 !important;
   border-color: #06B6D4 !important;
   box-shadow: 0 0 14px rgba(6, 182, 212, 0.6);
 }
+
 .spidey-theme-2:hover {
   border-right-color: rgba(6, 182, 212, 0.7) !important;
 }
 
 /* Theme 3: Symbiote (Neon Violet Top -> Midnight Abyss Bottom) */
 .spidey-theme-3 .spidey-vignette {
-  background: linear-gradient(
-    180deg,
-    rgba(168, 85, 247, 0.75) 0%,
-    rgba(110, 40, 180, 0.55) 30%,
-    rgba(22, 8, 36, 0.85) 65%,
-    rgba(8, 5, 12, 0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(168, 85, 247, 0.75) 0%,
+      rgba(110, 40, 180, 0.55) 30%,
+      rgba(22, 8, 36, 0.85) 65%,
+      rgba(8, 5, 12, 0.98) 100%) !important;
 }
+
 .spidey-theme-3 .panel-lens-flare {
   background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
 }
+
 .spidey-theme-3 .spidey-index-pill,
 .spidey-theme-3:hover .spidey-arrow-shield {
   background: #A855F7 !important;
   border-color: #A855F7 !important;
   box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
 }
+
 .spidey-theme-3:hover {
   border-right-color: rgba(168, 85, 247, 0.7) !important;
 }
 
 /* Theme 4: Iron Spider (Amber Gold Top -> Obsidian Crimson Bottom) */
 .spidey-theme-4 .spidey-vignette {
-  background: linear-gradient(
-    180deg,
-    rgba(245, 158, 11, 0.75) 0%,
-    rgba(180, 90, 10, 0.55) 30%,
-    rgba(34, 12, 8, 0.85) 65%,
-    rgba(10, 6, 4, 0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(245, 158, 11, 0.75) 0%,
+      rgba(180, 90, 10, 0.55) 30%,
+      rgba(34, 12, 8, 0.85) 65%,
+      rgba(10, 6, 4, 0.98) 100%) !important;
 }
+
 .spidey-theme-4 .panel-lens-flare {
   background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.45) 0%, transparent 70%);
 }
+
 .spidey-theme-4 .spidey-index-pill,
 .spidey-theme-4:hover .spidey-arrow-shield {
   background: #F59E0B !important;
   border-color: #F59E0B !important;
   box-shadow: 0 0 14px rgba(245, 158, 11, 0.6);
 }
+
 .spidey-theme-4:hover {
   border-right-color: rgba(245, 158, 11, 0.7) !important;
 }
 
 /* Theme 5: Spider-Man 2099 (Electric Rose Top -> Night Sky Blue Bottom) */
 .spidey-theme-5 .spidey-vignette {
-  background: linear-gradient(
-    180deg,
-    rgba(244, 63, 94, 0.75) 0%,
-    rgba(160, 20, 60, 0.55) 30%,
-    rgba(16, 12, 34, 0.85) 65%,
-    rgba(6, 6, 14, 0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(244, 63, 94, 0.75) 0%,
+      rgba(160, 20, 60, 0.55) 30%,
+      rgba(16, 12, 34, 0.85) 65%,
+      rgba(6, 6, 14, 0.98) 100%) !important;
 }
+
 .spidey-theme-5 .panel-lens-flare {
   background: radial-gradient(circle at 50% 0%, rgba(244, 63, 94, 0.45) 0%, transparent 70%);
 }
+
 .spidey-theme-5 .spidey-index-pill,
 .spidey-theme-5:hover .spidey-arrow-shield {
   background: #F43F5E !important;
   border-color: #F43F5E !important;
   box-shadow: 0 0 14px rgba(244, 63, 94, 0.6);
 }
+
 .spidey-theme-5:hover {
   border-right-color: rgba(244, 63, 94, 0.7) !important;
 }
@@ -2121,7 +2135,7 @@ position: absolute !important;
 }
 
 .spidey-index-pill {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -2131,7 +2145,7 @@ position: absolute !important;
 }
 
 .spidey-category-tag {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-family-body, );
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -2191,4 +2205,118 @@ position: absolute !important;
 
 .spidey-hud-card:hover .panel-arrow {
   transform: translate(2px, -2px);
+}
+
+/* 1. Terminal Section Flex Anchor */
+.terminal-about-section {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding-bottom: 0 !important; /* Zero padding ensures the strip is dead flush to the bottom */
+}
+
+/* 2. Above-Strip Horizon Bar (Telemetry & Spider Button) */
+.about-baseline-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding-top: 18px !important;
+  padding-bottom: 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  position: relative !important;
+  z-index: 5 !important;
+  margin-top: auto !important; /* Pushes the baseline dock down */
+}
+
+.baseline-system-stamp {
+  font-family: var(--font-family-body) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  color: var(--color-text-secondary, #6b7280) !important;
+}
+
+/* 3. The Absolute Final Edge-to-Edge Strip */
+.about-copyright-strip {
+  width: 100% !important;
+  background-color: #050505 !important; /* Slightly deeper black tone for clear separation */
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 14px 40px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 10 !important;
+  margin-top: 0 !important;
+}
+
+.copyright-strip-inner {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+.copyright-text {
+  font-family: var(--font-family-body) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  color: rgba(245, 245, 245, 0.55) !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.copyright-text strong {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.copyright-telemetry {
+  font-family: var(--font-family-body) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  color: rgba(245, 245, 245, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
+}
+
+.telemetry-node-live {
+  width: 5px !important;
+  height: 5px !important;
+  background-color: #10b981 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8) !important;
+  display: inline-block !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE (MOBILE & TABLET ADAPTATION)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .about-baseline-bar {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .about-copyright-strip {
+    padding: 14px 20px !important;
+  }
+
+  .copyright-strip-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .copyright-text {
+    font-size: 10px !important;
+  }
+
+  .copyright-telemetry {
+    font-size: 9.5px !important;
+  }
 }

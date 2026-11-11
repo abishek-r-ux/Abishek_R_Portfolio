@@ -37,6 +37,8 @@
 
   <!-- Global Navbar Component Definition -->
   <script src="./navbar.js"></script>
+  <script src="./footer.js"></script>
+
 </head>
 
 <body>
@@ -184,10 +186,10 @@
     </div>
   </section>
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
        MODULE 03 // FULL-BLEED SEAMLESS CASE ARCHIVE
        ========================================================================== -->
- <!-- <section id="casestudies" class="case-minimal-rail" aria-label="Featured Case Studies">
+  <!-- <section id="casestudies" class="case-minimal-rail" aria-label="Featured Case Studies">
     <header class="case-minimal-header">
       <div class="case-header-meta">
         <span class="section-hud-badge">[ MODULE // 03: CASE ARCHIVE ]</span>
@@ -209,6 +211,124 @@
 
   Case Studies Data Model 
   <script src="./case-studies.data.js"></script> -->
+
+  <!-- ==========================================================================
+       MODULE 04 // ABOUT & CONTACT (CODE-NATIVE DYNAMIC MASKED PORTRAIT)
+       ========================================================================== -->
+  <footer id="about" class="terminal-about-section" aria-label="About and Contact">
+
+    <!-- Edge-to-Edge Portrait Stage (Right Side) -->
+    <div class="about-backdrop-stage" aria-hidden="true">
+      <img src="./assets/images/abishek-profile.jpg" alt="Abishek R." class="about-dynamic-portrait" loading="lazy" />
+    </div>
+
+    <div class="terminal-about-container">
+
+      <!-- Single Unified Content Stage -->
+      <div class="about-clean-flow">
+
+        <!-- One Authoritative Section Title -->
+        <h2 class="about-main-headline">
+          Design that ships without friction.
+        </h2>
+
+        <!-- Crisp Value Proposition -->
+        <p class="about-main-summary">
+          I bridge product design and production code—architecting design systems, enterprise software interfaces, and
+          high-density digital platforms that launch without handoff drift.
+        </p>
+
+        <!-- Scannable Spec Items -->
+        <div class="about-specs-grid">
+          <div class="spec-node">
+            <span class="spec-symbol">&gt;</span>
+            <span class="spec-text"><strong>Design Systems</strong> &mdash; Figma token pipelines to live code</span>
+          </div>
+          <div class="spec-node">
+            <span class="spec-symbol">&gt;</span>
+            <span class="spec-text"><strong>Technical Fluency</strong> &mdash; Production CSS, TypeScript &amp;
+              Angular</span>
+          </div>
+          <div class="spec-node">
+            <span class="spec-symbol">&gt;</span>
+            <span class="spec-text"><strong>Impact Model</strong> &mdash; Open to product roles &amp; select
+              contracts</span>
+          </div>
+        </div>
+
+        <!-- Action Row: Mail Me + Clipboard Copy + Channels -->
+        <div class="about-actions-dock">
+
+          <!-- Dual Action Lockup -->
+          <div class="about-cta-cluster">
+            <a href="mailto:abishekrux@gmail.com" class="cta-spider-btn about-mail-btn" id="about-mail-btn">
+              <span class="cta-pulse-beacon"></span>
+              MAIL ME ↗
+            </a>
+
+            <button type="button" class="about-copy-icon-btn" id="about-copy-btn" aria-label="Copy email address"
+              title="Copy Email">
+              <svg class="copy-default-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg class="copy-success-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Secondary Channels -->
+          <div class="about-meta-channels">
+            <a href="https://linkedin.com/in/abishek-r" target="_blank" rel="noopener noreferrer"
+              class="meta-link">LINKEDIN ↗</a>
+            <span class="meta-divider">&bull;</span>
+            <a href="https://hashnode.com/@abishek" target="_blank" rel="noopener noreferrer" class="meta-link">HASHNODE
+              ↗</a>
+            <span class="meta-divider">&bull;</span>
+            <a href="https://behance.net/abishek-r" target="_blank" rel="noopener noreferrer" class="meta-link">BEHANCE
+              ↗</a>
+            <span class="meta-divider">&bull;</span>
+            <a href="https://github.com/abishek-r" target="_blank" rel="noopener noreferrer" class="meta-link">GITHUB
+              ↗</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Interactive Spider Web-Sling Dock -->
+      <div class="web-sling-dock" id="web-sling-trigger" role="button" aria-label="Web sling back to top" tabindex="0">
+        <!-- Dynamic Web Filament Canvas / Line -->
+        <div class="web-filament" id="web-filament" aria-hidden="true"></div>
+
+        <div class="sling-spider-wrapper" id="sling-spider">
+          <!-- Spider HUD Icon -->
+          <svg class="sling-spider-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Body Core -->
+            <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+            <circle cx="12" cy="7" r="1.5" fill="currentColor"></circle>
+            <!-- Spider Legs (Upper Left / Right) -->
+            <path d="M9 10L4 6M4 6L2 9"></path>
+            <path d="M15 10L20 6M20 6L22 9"></path>
+            <!-- Spider Legs (Mid Left / Right) -->
+            <path d="M9 12L3 13M3 13L2 16"></path>
+            <path d="M15 12L21 13M21 13L22 16"></path>
+            <!-- Spider Legs (Lower Left / Right) -->
+            <path d="M9 14L4 18M4 18L5 21"></path>
+            <path d="M15 14L20 18M20 18L19 21"></path>
+          </svg>
+        </div>
+
+        <span class="sling-label">ASCEND // TOP</span>
+      </div>
+
+    </div>
+  </footer>
+
 
   <script src="./app.js"></script>
 </body>
