@@ -4,24 +4,24 @@
  * Typography Tokens: var(--font-family-display) & var(--font-family-body)
  */
 (function initAruxFooter() {
-    function renderFooter() {
-        let mountPoint = document.getElementById('about') || document.querySelector('arux-footer');
+  function renderFooter() {
+    let mountPoint = document.getElementById('about') || document.querySelector('arux-footer');
 
-        if (!mountPoint) {
-            mountPoint = document.createElement('footer');
-            mountPoint.id = 'about';
-            document.body.appendChild(mountPoint);
-        }
+    if (!mountPoint) {
+      mountPoint = document.createElement('footer');
+      mountPoint.id = 'about';
+      document.body.appendChild(mountPoint);
+    }
 
-        // Apply classes directly to the mount element (prevents double wrapper padding)
-        mountPoint.className = 'terminal-about-section';
-        mountPoint.setAttribute('aria-label', 'About and Contact');
+    // Apply classes directly to the mount element (prevents double wrapper padding)
+    mountPoint.className = 'terminal-about-section';
+    mountPoint.setAttribute('aria-label', 'About and Contact');
 
-        // Inject styles if not already present
-        if (!document.getElementById('arux-footer-styles')) {
-            const styleTag = document.createElement('style');
-            styleTag.id = 'arux-footer-styles';
-            styleTag.textContent = `
+    // Inject styles if not already present
+    if (!document.getElementById('arux-footer-styles')) {
+      const styleTag = document.createElement('style');
+      styleTag.id = 'arux-footer-styles';
+      styleTag.textContent = `
         /* ==========================================================================
            ARUX.OS // PRODUCTION FOOTER STYLES
            ========================================================================== */
@@ -371,36 +371,55 @@
         }
 
         /* ==========================================================================
-           SPIDER WEB-SLING DOCK & TOOLTIP
+           FLOATING BOTTOM-LEFT WEB-SLING DOCK & SCROLL REVEAL
            ========================================================================== */
         .web-sling-dock {
+position: fixed !important;
+          bottom: 58px !important;
+          right: 40px !important;
+          left: auto !important;
           display: inline-flex !important;
           align-items: center !important;
-          position: relative !important;
           user-select: none !important;
-          z-index: 20 !important;
+          z-index: 99990 !important;
           padding: 0 !important;
           background: transparent !important;
           cursor: pointer !important;
           outline: none !important;
+
+          /* Initial Hidden State (Slides in from Right Corner on Scroll) */
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+          transform: translateX(32px) !important;
+          transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      visibility 0.38s !important;
+        }
+
+        .web-sling-dock.is-visible {
+opacity: 1 !important;
+          visibility: visible !important;
+          pointer-events: auto !important;
+          transform: translateX(0) !important;
         }
 
         .sling-spider-wrapper {
-          width: 56px !important;
-          height: 56px !important;
+          width: 48px !important;
+          height: 48px !important;
           border-radius: 50% !important;
           background: #ffffff !important;
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
           position: relative !important;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 12px rgba(255, 255, 255, 0.25) !important;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 12px rgba(255, 255, 255, 0.25) !important;
           transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease !important;
         }
 
         .sling-logo-img {
-          width: 36px !important;
-          height: 36px !important;
+          width: 28px !important;
+          height: 28px !important;
           object-fit: contain !important;
           display: block !important;
           pointer-events: none !important;
@@ -417,19 +436,20 @@
           transform: scale(1.08) !important;
         }
 
-        /* Hover Tooltip: Floating HUD Kicker */
+        /* Hover Tooltip: Left-Aligned HUD Kicker */
         .sling-tooltip {
           position: absolute !important;
           bottom: calc(100% + 10px) !important;
-          left: 50% !important;
-          transform: translateX(-50%) translateY(4px) !important;
+          right: 0 !important;
+          left: auto !important;
+          transform: translateY(4px) !important;
           background: rgba(14, 14, 18, 0.95) !important;
           backdrop-filter: blur(8px) !important;
           -webkit-backdrop-filter: blur(8px) !important;
           border: 1px solid rgba(225, 29, 46, 0.6) !important;
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 10px rgba(225, 29, 46, 0.3) !important;
           color: #ffffff !important;
-          font-family: var(--font-family-display) !important;
+          font-family: var(--font-family-body) !important;
           font-size: 9.5px !important;
           font-weight: 700 !important;
           letter-spacing: 0.12em !important;
@@ -445,11 +465,11 @@
 
         /* Tooltip Pointer Needle */
         .sling-tooltip::after {
-          content: '' !important;
+ content: '' !important;
           position: absolute !important;
           top: 100% !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
+          right: 20px !important;
+          left: auto !important;
           border-width: 4px !important;
           border-style: solid !important;
           border-color: rgba(225, 29, 46, 0.8) transparent transparent transparent !important;
@@ -457,9 +477,9 @@
 
         .web-sling-dock:hover .sling-tooltip,
         .web-sling-dock:focus-visible .sling-tooltip {
-          opacity: 1 !important;
+opacity: 1 !important;
           visibility: visible !important;
-          transform: translateX(-50%) translateY(0) !important;
+          transform: translateY(0) !important;
         }
 
         /* High-Tensile Web Filament (Global Viewport Plane) */
@@ -516,13 +536,27 @@
             align-items: flex-start !important;
             gap: 8px !important;
           }
+          .web-sling-dock {
+   bottom: 20px !important;
+            right: 20px !important;
+            left: auto !important;
+          }
+            
+          .sling-spider-wrapper {
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .sling-logo-img {
+            width: 24px !important;
+            height: 24px !important;
+          }
         }
       `;
-            document.head.appendChild(styleTag);
-        }
+      document.head.appendChild(styleTag);
+    }
 
-        // Direct inner HTML without an extra wrapper element
-        mountPoint.innerHTML = `
+    // Direct inner HTML without an extra wrapper element
+    mountPoint.innerHTML = `
         <!-- Portrait Anchor: Flush edge-to-edge -->
         <div class="about-backdrop-stage" aria-hidden="true">
           <img 
@@ -563,7 +597,13 @@
             <!-- Actions Dock -->
             <div class="about-actions-dock">
               <div class="about-cta-cluster">
-                <a href="mailto:abishekrux@gmail.com" class="about-mail-btn" id="about-mail-btn">
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=abishekrux@gmail.com&su=Design%20Inquiry%20%2F%2F%20ARUX.OS" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="about-mail-btn" 
+                  id="about-mail-btn"
+                >
                   <span class="cta-pulse-beacon"></span>
                   MAIL ME ↗
                 </a>
@@ -596,20 +636,6 @@
             <div class="baseline-system-stamp">
               LOC: TAMIL NADU, INDIA &bull; LATENCY: OPTIMAL
             </div>
-
-            <!-- Spider Sling Trigger: White Round Button with Tooltip -->
-            <div class="web-sling-dock" id="web-sling-trigger" role="button" aria-label="To the top" tabindex="0">
-              <span class="sling-tooltip" aria-hidden="true">TO THE TOP</span>
-              <div class="sling-spider-wrapper" id="sling-spider">
-                <img 
-                  src="./assets/icons/logo.png" 
-                  alt="Back to top" 
-                  class="sling-logo-img" 
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            
           </div>
 
         </div>
@@ -628,143 +654,162 @@
         </div>
     `;
 
-        // 1. Direct Mail Click Handler
-        const mailBtn = mountPoint.querySelector('#about-mail-btn');
-        if (mailBtn) {
-            mailBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = 'mailto:abishekrux@gmail.com';
-            });
+    // 1. Clipboard Copy
+    const copyBtn = mountPoint.querySelector('#about-copy-btn');
+    if (copyBtn) {
+      const emailToCopy = 'abishekrux@gmail.com';
+      let resetTimer = null;
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(emailToCopy);
+          } else {
+            const temp = document.createElement('textarea');
+            temp.value = emailToCopy;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.focus();
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+          }
+
+          clearTimeout(resetTimer);
+          copyBtn.classList.add('copied');
+          copyBtn.setAttribute('title', 'Copied to clipboard!');
+
+          resetTimer = setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.setAttribute('title', 'Copy Email');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy email:', err);
         }
-
-        // 2. Clipboard Copy
-        const copyBtn = mountPoint.querySelector('#about-copy-btn');
-        if (copyBtn) {
-            const emailToCopy = 'abishekrux@gmail.com';
-            let resetTimer = null;
-
-            copyBtn.addEventListener('click', async () => {
-                try {
-                    if (navigator.clipboard && window.isSecureContext) {
-                        await navigator.clipboard.writeText(emailToCopy);
-                    } else {
-                        const temp = document.createElement('textarea');
-                        temp.value = emailToCopy;
-                        temp.style.position = 'fixed';
-                        temp.style.opacity = '0';
-                        document.body.appendChild(temp);
-                        temp.focus();
-                        temp.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(temp);
-                    }
-
-                    clearTimeout(resetTimer);
-                    copyBtn.classList.add('copied');
-                    copyBtn.setAttribute('title', 'Copied to clipboard!');
-
-                    resetTimer = setTimeout(() => {
-                        copyBtn.classList.remove('copied');
-                        copyBtn.setAttribute('title', 'Copy Email');
-                    }, 2000);
-                } catch (err) {
-                    console.error('Failed to copy email:', err);
-                }
-            });
-        }
-
-        // 3. Multi-Trigger Safe Web-Sling Physics (Transform scaleY Engine)
-        const slingTrigger = mountPoint.querySelector('#web-sling-trigger');
-        const slingSpider = mountPoint.querySelector('#sling-spider');
-
-        if (slingTrigger && slingSpider) {
-            // Guarantee a single global filament directly on <body>
-            let globalFilament = document.getElementById('arux-web-filament');
-            if (!globalFilament) {
-                globalFilament = document.createElement('div');
-                globalFilament.id = 'arux-web-filament';
-                globalFilament.className = 'web-filament-global';
-                globalFilament.setAttribute('aria-hidden', 'true');
-                document.body.appendChild(globalFilament);
-            }
-
-            let isSlinging = false;
-
-            const executeSling = () => {
-                // Trigger whenever not already slinging and scrolled down
-                if (isSlinging || window.scrollY <= 40) return;
-                isSlinging = true;
-
-                // Hide tooltip immediately during animation
-                const tooltip = slingTrigger.querySelector('.sling-tooltip');
-                if (tooltip) tooltip.style.display = 'none';
-
-                // Accurate coordinates of the top rim of the white circular button
-                const spiderRect = slingSpider.getBoundingClientRect();
-                const startX = spiderRect.left + (spiderRect.width / 2);
-                const buttonTopY = spiderRect.top;
-
-                // Reset filament cleanly to zero-scale anchored at the button's exact top edge
-                globalFilament.style.transition = 'none';
-                globalFilament.style.opacity = '1';
-                globalFilament.style.left = `${startX - 1.25}px`;
-                globalFilament.style.bottom = `${window.innerHeight - buttonTopY}px`;
-                globalFilament.style.height = `${buttonTopY}px`;
-                globalFilament.style.transform = 'scaleY(0)';
-                globalFilament.style.transformOrigin = 'bottom center';
-
-                // Force DOM reflow to commit initial frame
-                void globalFilament.offsetHeight;
-
-                // Stage 1: THWIP! Shoot web straight up to ceiling
-                globalFilament.style.transition = 'transform 0.24s cubic-bezier(0.12, 0.85, 0.3, 1)';
-                globalFilament.classList.add('active');
-
-                // Stage 2: Button recoils under elastic tension
-                setTimeout(() => {
-                    slingSpider.classList.add('recoil');
-                }, 130);
-
-                // Stage 3: Launch upward and smooth scroll page to top
-                setTimeout(() => {
-                    slingSpider.classList.remove('recoil');
-                    slingSpider.classList.add('launch');
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }, 260);
-
-                // Stage 4: Reset all states once arriving at hero
-                setTimeout(() => {
-                    globalFilament.style.transition = 'opacity 0.2s ease';
-                    globalFilament.style.opacity = '0';
-                    globalFilament.classList.remove('active');
-
-                    setTimeout(() => {
-                        slingSpider.classList.remove('launch');
-                        slingSpider.classList.remove('recoil');
-                        globalFilament.style.transform = 'scaleY(0)';
-                        if (tooltip) tooltip.style.display = '';
-                        isSlinging = false;
-                    }, 350);
-                }, 850);
-            };
-
-            slingTrigger.addEventListener('click', executeSling);
-            slingTrigger.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    executeSling();
-                }
-            });
-        }
+      });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', renderFooter);
-    } else {
-        renderFooter();
+    // 2. Global Body-Mounted Floating To-The-Top Button + Scroll Listener + Web Sling Physics
+    let slingTrigger = document.getElementById('web-sling-trigger');
+    if (!slingTrigger) {
+      slingTrigger = document.createElement('div');
+      slingTrigger.id = 'web-sling-trigger';
+      slingTrigger.className = 'web-sling-dock';
+      slingTrigger.setAttribute('role', 'button');
+      slingTrigger.setAttribute('aria-label', 'To the top');
+      slingTrigger.setAttribute('tabindex', '0');
+      slingTrigger.innerHTML = `
+              <span class="sling-tooltip" aria-hidden="true">TO THE TOP</span>
+              <div class="sling-spider-wrapper" id="sling-spider">
+                <img 
+                  src="./assets/icons/logo.png" 
+                  alt="Back to top" 
+                  class="sling-logo-img" 
+                  loading="lazy"
+                />
+              </div>
+            `;
+      document.body.appendChild(slingTrigger);
     }
+
+    const slingSpider = slingTrigger.querySelector('#sling-spider');
+
+    let globalFilament = document.getElementById('arux-web-filament');
+    if (!globalFilament) {
+      globalFilament = document.createElement('div');
+      globalFilament.id = 'arux-web-filament';
+      globalFilament.className = 'web-filament-global';
+      globalFilament.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(globalFilament);
+    }
+
+    let isSlinging = false;
+
+    // Reveal on first scroll (fade & slide in from left corner)
+    const handleScrollVisibility = () => {
+      if (isSlinging) return;
+      if (window.scrollY > 40) {
+        slingTrigger.classList.add('is-visible');
+      } else {
+        slingTrigger.classList.remove('is-visible');
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollVisibility, { passive: true });
+    handleScrollVisibility(); // Check initial scroll position on load
+
+    const executeSling = () => {
+      if (isSlinging || window.scrollY <= 40) return;
+      isSlinging = true;
+
+      const tooltip = slingTrigger.querySelector('.sling-tooltip');
+      if (tooltip) tooltip.style.display = 'none';
+
+      // Exact coordinates of the circular button in the bottom-left corner
+      const spiderRect = slingSpider.getBoundingClientRect();
+      const startX = spiderRect.left + (spiderRect.width / 2);
+      const buttonTopY = spiderRect.top;
+
+      globalFilament.style.transition = 'none';
+      globalFilament.style.opacity = '1';
+      globalFilament.style.left = `${startX - 1.25}px`;
+      globalFilament.style.bottom = `${window.innerHeight - buttonTopY}px`;
+      globalFilament.style.height = `${buttonTopY}px`;
+      globalFilament.style.transform = 'scaleY(0)';
+      globalFilament.style.transformOrigin = 'bottom center';
+
+      void globalFilament.offsetHeight;
+
+      // Stage 1: THWIP! Shoot web straight up to ceiling
+      globalFilament.style.transition = 'transform 0.24s cubic-bezier(0.12, 0.85, 0.3, 1)';
+      globalFilament.classList.add('active');
+
+      // Stage 2: Recoil compression
+      setTimeout(() => {
+        slingSpider.classList.add('recoil');
+      }, 130);
+
+      // Stage 3: Launch upward and smooth scroll page to top
+      setTimeout(() => {
+        slingSpider.classList.remove('recoil');
+        slingSpider.classList.add('launch');
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 260);
+
+      // Stage 4: Reset all states once back at hero top
+      setTimeout(() => {
+        globalFilament.style.transition = 'opacity 0.2s ease';
+        globalFilament.style.opacity = '0';
+        globalFilament.classList.remove('active');
+        slingTrigger.classList.remove('is-visible');
+
+        setTimeout(() => {
+          slingSpider.classList.remove('launch');
+          slingSpider.classList.remove('recoil');
+          globalFilament.style.transform = 'scaleY(0)';
+          if (tooltip) tooltip.style.display = '';
+          isSlinging = false;
+        }, 350);
+      }, 850);
+    };
+
+    slingTrigger.addEventListener('click', executeSling);
+    slingTrigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        executeSling();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderFooter);
+  } else {
+    renderFooter();
+  }
 })();
